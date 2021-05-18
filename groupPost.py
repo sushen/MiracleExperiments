@@ -13,13 +13,7 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
-
-
-def driver():
-    global driver
-    driver = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options)
-    driver.get("https://facebook.com")
-
+import pyautogui
 
 def chrome_options():
     global chrome_options
@@ -32,6 +26,13 @@ def chrome_options():
     chrome_options.add_argument('disable-infobars')
     chrome_options.add_experimental_option("useAutomationExtension", False)
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+
+def driver():
+    global driver
+    driver = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options)
+    driver.get("https://facebook.com")
+
+
 
 
 def actions():
@@ -47,8 +48,9 @@ def login():
 
         driver.find_element_by_name("email").send_keys(username)
         driver.find_element_by_name("pass").send_keys(password)
-        driver.find_element_by_name("login").click()
-        print(input("Press any Key: "))
+        # driver.find_element_by_name("login").click()
+        pyautogui.press('enter')
+        # print(input("Press any Key: "))
         print("Login work Successfully ")
 
     except:
@@ -56,56 +58,32 @@ def login():
 
 
 def navigatePagePostAria():
-    sleepTime = 4
-    implicitlyWaitTime = 20
-    for i in range(2):
-        driver.implicitly_wait(implicitlyWaitTime)
-        actions.send_keys(Keys.BACK_SPACE)
-        actions.send_keys(Keys.TAB * 4)
-        time.sleep(sleepTime)
-        actions.perform()
-        print("Firast 10 tabs Working")
+    try:
+        sleepTime = 4
+        implicitlyWaitTime = 20
 
-    actions.send_keys(Keys.TAB * 3)
-    actions.send_keys(Keys.ENTER)
-    actions.perform()
-    print("Navigate Post area Successfully ")
+        for i in range(23):
+            time.sleep(sleepTime)
+            driver.implicitly_wait(implicitlyWaitTime)
+            pyautogui.press('tab')
 
+        pyautogui.press('enter')
+    except:
+        try:
+            sleepTime = 4
+            implicitlyWaitTime = 20
 
-    """ Nicer Approach
-    # try:
-    #     sleepTime = 4
-    #     implicitlyWaitTime = 20
-    #     for i in range(2):
-    #         driver.implicitly_wait(implicitlyWaitTime)
-    #         actions.send_keys(Keys.BACK_SPACE)
-    #         actions.send_keys(Keys.TAB * 4)
-    #         time.sleep(sleepTime)
-    #         actions.perform()
-    #         print("Firast 10 tabs Working")
-    # 
-    #     actions.send_keys(Keys.TAB * 3)
-    #     actions.send_keys(Keys.ENTER)
-    #     actions.perform()
-    #     print("Navigate Post area Successfully ")
-    # except:
-    #     print("navigatePagePostAria function is not Working")
-    #     print("Going For x Path")
-    #     try:
-    #         editButtonXpath = "//div/div[1]/div/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div/div[1]/div/div[3]/div[2]/div/div[1]"
-    # 
-    #         driver.find_element_by_xpath(editButtonXpath).click()
-    #         print("X Path Workin in 'navigatePagePostAria' function")
-    # 
-    #     except:
-    #         print("X path aslo not working in 'navigatePagePostAria' function")
+            for i in range(23):
+                time.sleep(sleepTime)
+                driver.implicitly_wait(implicitlyWaitTime)
+                pyautogui.press('tab')
 
-     Nicer Approach End"""
-
+            pyautogui.press('enter')
+        except:
+            print("")
 
 
 def navigateEditButton():
-    # driver.find_element_by_xpath("//div/div[1]/div/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div/div[1]/div/div[3]/div[2]/div/div[1]").click()
     sleepTime = 4
     implicitlyWaitTime = 20
     time.sleep(sleepTime)
@@ -152,5 +130,5 @@ driver()
 login()
 driver.get("https://www.facebook.com/groups/402353916617590/permalink/1630582000461436/")
 navigatePagePostAria()
-# navigateEditButton()
+navigateEditButton()
 # activePostAreaAndPostInPage()
