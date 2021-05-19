@@ -14,26 +14,29 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import pyautogui
+import pathlib
 
-def chrome_options():
-    global chrome_options
-    chrome_options = Options()
-    chrome_options.add_argument("--start-maximized")
-    chrome_options.add_argument('--profile-directory=Default')
-    # chrome_options.add_argument("--user-data-dir=chrome-data")
+
+def options():
+    global options
+    options = Options()
+    scriptDirectory = pathlib.Path().absolute()
+    options.add_argument("--start-maximized")
+    options.add_argument("--user-data-dir=chrome-data")
+    options.add_argument('--profile-directory=Default')
     prefs = {"profile.default_content_setting_values.notifications": 2}
-    chrome_options.add_experimental_option("prefs", prefs)
-    chrome_options.add_argument('disable-infobars')
-    chrome_options.add_experimental_option("useAutomationExtension", False)
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option("prefs", prefs)
+    options.add_argument('disable-infobars')
+    options.add_experimental_option("useAutomationExtension", False)
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_argument("user-data-dir=chrome-data")
+    options.add_argument(f"user-data-dir={scriptDirectory}\\userdata")
+
 
 def driver():
     global driver
-    driver = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options)
-    driver.get("https://facebook.com")
-
-
-
+    driver = webdriver.Chrome("chromedriver.exe", options=options)
+    # driver.get("https://facebook.com")
 
 def actions():
     global actions
@@ -41,6 +44,7 @@ def actions():
 
 
 def login():
+    driver.get("https://facebook.com")
     try:
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
         username = os.environ.get('my_facebook_username')
@@ -48,28 +52,59 @@ def login():
 
         driver.find_element_by_name("email").send_keys(username)
         driver.find_element_by_name("pass").send_keys(password)
-        # driver.find_element_by_name("login").click()
-        pyautogui.press('enter')
-        # print(input("Press any Key: "))
+        driver.find_element_by_name("login").click()
+        print(input("Press any Key: "))
         print("Login work Successfully ")
 
     except:
+        print("Selenium Calling Data From userdata folder bypass login ")
         pass
+
+
+# def navigatePagePostAria():
+#     sleepTime = 2
+#     implicitlyWaitTime = 30
+#     total_Tab = 23
+#
+#     driver.find_element_by_name("email")
+#
+#     driver.get("https://www.facebook.com/groups/402353916617590/permalink/1630582000461436/")
+#     driver.implicitly_wait(implicitlyWaitTime)
+#     time.sleep(sleepTime)
+#     print("2 second sleep and 30 sec implicit wait. ")
+#
+#     actions.send_keys(Keys.TAB * total_Tab)
+#     print("I am pressing tab " + str(total_Tab) + " times")
+#
+#     # for i in range(total_Tab):
+#     #     driver.implicitly_wait(implicitlyWaitTime)
+#     #     actions.send_keys(Keys.BACK_SPACE)
+#     #     # actions.send_keys(Keys.TAB)
+#     #     print("Now *" + str(i) + "* no tabs pressing")
+#     #
+#     # # actions.send_keys(Keys.ENTER)
+#     # time.sleep(sleepTime)
+#     # # actions.perform()
 
 
 def navigatePagePostAria():
     try:
-        sleepTime = 4
+        sleepTime = 0.5
         implicitlyWaitTime = 20
-
-        for i in range(23):
-            time.sleep(sleepTime)
+        total_Tab = 23
+        for i in range(total_Tab):
             driver.implicitly_wait(implicitlyWaitTime)
-            pyautogui.press('tab')
-
-        pyautogui.press('enter')
+            actions.send_keys(Keys.BACK_SPACE)
+            actions.send_keys(Keys.TAB)
+            print("Now" + str(i) + "no tabs pressing")
+        actions.send_keys(Keys.ENTER)
+        time.sleep(sleepTime)
+        actions.perform()
+        print("Selenium ActionChains 'Keys.TAB'  working")
     except:
+        print("Selenium ActionChains 'Keys.TAB' isn't working, Trying 'pyautogui.press('tab') commend' ")
         try:
+            print("'pyautogui.press('tab') commend' is mute now")
             sleepTime = 4
             implicitlyWaitTime = 20
 
@@ -80,18 +115,20 @@ def navigatePagePostAria():
 
             pyautogui.press('enter')
         except:
-            print("")
+            print("'pyautogui.press('tab') commend' is also not working")
 
 
 def navigateEditButton():
     sleepTime = 4
-    implicitlyWaitTime = 20
+    implicitlyWaitTime = 30
     time.sleep(sleepTime)
 
     active_post_area = driver.switch_to.active_element
     driver.implicitly_wait(implicitlyWaitTime)
     time.sleep(sleepTime)
     active_post_area.send_keys(Keys.DOWN * 2)
+    # actions.send_keys(Keys.ENTER)
+    time.sleep(sleepTime)
     actions.perform()
     print("Navigate Edit Button area Successfully ")
 
@@ -99,7 +136,7 @@ def navigateEditButton():
 def activePostAreaAndPostInPage():
     #driver.find_element_by_xpath("//div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div/div/div/div/div").click()
     sleepTime = 4
-    implicitlyWaitTime = 20
+    implicitlyWaitTime = 30
     #
     active_post_area = driver.switch_to.active_element
     driver.implicitly_wait(implicitlyWaitTime)
@@ -125,10 +162,11 @@ def activePostAreaAndPostInPage():
     actions.perform()
 
 
-chrome_options()
+options()
 driver()
 login()
-driver.get("https://www.facebook.com/groups/402353916617590/permalink/1630582000461436/")
 navigatePagePostAria()
 navigateEditButton()
-# activePostAreaAndPostInPage()
+activePostAreaAndPostInPage()
+
+driver.close()
