@@ -81,6 +81,42 @@ def trytopost():
         pass
 
 
+
+
+def activePostAreaAndPostInPage():
+    sleepTime = 4
+    implicitlyWaitTime = 20
+    time.sleep(sleepTime)
+
+    active_post_area = driver.switch_to.active_element
+    driver.implicitly_wait(implicitlyWaitTime)
+    time.sleep(sleepTime)
+    active_post_area.send_keys("'driver.switch_to.active_element' "
+                               "this code is a one of important snippet for facebook automation.")
+
+    actions.perform()
+    print("Writing Post in the post area Successfully ")
+
+    for i in range(2):
+        driver.implicitly_wait(implicitlyWaitTime)
+        actions.send_keys(Keys.TAB * 5)
+        print(str(i) + " tabs Working")
+    #actions.send_keys(Keys.ENTER)
+    actions.perform()
+    try:
+        driver.find_element_by_xpath("//span[@class='a8c37x1j ni8dbmo4 stjgntxs l9j0dhe7 ltmttdrg g0qnabr5'][normalize-space()='Post']").click()
+        print("Click post button working")
+    except:
+        print("NOrmal xpath is'nt working")
+        driver.find_element_by_xpath(
+            "/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[3]/div[2]/div/div/div/div[1]/div/span/span").click()
+        print("2nd xpath working")
+
+
+
+
+
+
 chrome_options()
 driver()
 actions()
@@ -90,6 +126,7 @@ driver.get("https://www.facebook.com/groups/601242797290982")
 time.sleep(5)
 trytopost()
 time.sleep(2)
+activePostAreaAndPostInPage()
 
 
 
