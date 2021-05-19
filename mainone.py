@@ -113,8 +113,9 @@ def activePostAreaAndPostInPage():
         print("2nd xpath working")
 
 
+#TODO : Edith the post
 
-
+#TODO : Delet the Post
 
 
 chrome_options()
