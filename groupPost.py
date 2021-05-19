@@ -61,61 +61,59 @@ def login():
         pass
 
 
-# def navigatePagePostAria():
-#     sleepTime = 2
-#     implicitlyWaitTime = 30
-#     total_Tab = 23
-#
-#     driver.find_element_by_name("email")
-#
-#     driver.get("https://www.facebook.com/groups/402353916617590/permalink/1630582000461436/")
-#     driver.implicitly_wait(implicitlyWaitTime)
-#     time.sleep(sleepTime)
-#     print("2 second sleep and 30 sec implicit wait. ")
-#
-#     actions.send_keys(Keys.TAB * total_Tab)
-#     print("I am pressing tab " + str(total_Tab) + " times")
-#
-#     # for i in range(total_Tab):
-#     #     driver.implicitly_wait(implicitlyWaitTime)
-#     #     actions.send_keys(Keys.BACK_SPACE)
-#     #     # actions.send_keys(Keys.TAB)
-#     #     print("Now *" + str(i) + "* no tabs pressing")
-#     #
-#     # # actions.send_keys(Keys.ENTER)
-#     # time.sleep(sleepTime)
-#     # # actions.perform()
-
-
 def navigatePagePostAria():
-    try:
-        sleepTime = 0.5
-        implicitlyWaitTime = 20
-        total_Tab = 23
-        for i in range(total_Tab):
-            driver.implicitly_wait(implicitlyWaitTime)
-            actions.send_keys(Keys.BACK_SPACE)
-            actions.send_keys(Keys.TAB)
-            print("Now" + str(i) + "no tabs pressing")
-        actions.send_keys(Keys.ENTER)
-        time.sleep(sleepTime)
-        actions.perform()
-        print("Selenium ActionChains 'Keys.TAB'  working")
-    except:
-        print("Selenium ActionChains 'Keys.TAB' isn't working, Trying 'pyautogui.press('tab') commend' ")
-        try:
-            print("'pyautogui.press('tab') commend' is mute now")
-            sleepTime = 4
-            implicitlyWaitTime = 20
+    sleepTime = 2
+    implicitlyWaitTime = 30
+    total_Tab = 23
 
-            for i in range(23):
-                time.sleep(sleepTime)
-                driver.implicitly_wait(implicitlyWaitTime)
-                pyautogui.press('tab')
+    driver.get("https://www.facebook.com/groups/402353916617590/permalink/1630582000461436/")
+    driver.implicitly_wait(implicitlyWaitTime)
+    time.sleep(sleepTime)
+    print("2 second sleep and 30 sec implicit wait. ")
 
-            pyautogui.press('enter')
-        except:
-            print("'pyautogui.press('tab') commend' is also not working")
+    actions.send_keys(Keys.TAB * total_Tab)
+    print("I am pressing tab " + str(total_Tab) + " times")
+
+    # for i in range(total_Tab):
+    #     driver.implicitly_wait(implicitlyWaitTime)
+    #     actions.send_keys(Keys.BACK_SPACE)
+    #     # actions.send_keys(Keys.TAB)
+    #     print("Now *" + str(i) + "* no tabs pressing")
+    #
+    # # actions.send_keys(Keys.ENTER)
+    # time.sleep(sleepTime)
+    # # actions.perform()
+
+
+# def navigatePagePostAria():
+#     try:
+#         sleepTime = 0.5
+#         implicitlyWaitTime = 20
+#         total_Tab = 23
+#         for i in range(total_Tab):
+#             driver.implicitly_wait(implicitlyWaitTime)
+#             actions.send_keys(Keys.BACK_SPACE)
+#             actions.send_keys(Keys.TAB)
+#             print("Now" + str(i) + "no tabs pressing")
+#         actions.send_keys(Keys.ENTER)
+#         time.sleep(sleepTime)
+#         actions.perform()
+#         print("Selenium ActionChains 'Keys.TAB'  working")
+#     except:
+#         print("Selenium ActionChains 'Keys.TAB' isn't working, Trying 'pyautogui.press('tab') commend' ")
+#         try:
+#             print("'pyautogui.press('tab') commend' is mute now")
+#             # sleepTime = 4
+#             # implicitlyWaitTime = 20
+#             #
+#             # for i in range(23):
+#             #     time.sleep(sleepTime)
+#             #     driver.implicitly_wait(implicitlyWaitTime)
+#             #     pyautogui.press('tab')
+#             #
+#             # pyautogui.press('enter')
+#         except:
+#             print("'pyautogui.press('tab') commend' is also not working")
 
 
 def navigateEditButton():
@@ -166,7 +164,7 @@ options()
 driver()
 login()
 navigatePagePostAria()
-navigateEditButton()
-activePostAreaAndPostInPage()
+# navigateEditButton()
+# activePostAreaAndPostInPage()
 
 driver.close()
