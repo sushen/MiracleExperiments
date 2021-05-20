@@ -73,56 +73,26 @@ def navigatePagePostAria():
     actions.perform()
     print("Navigate Post area Successfully ")
 
+
 def navigateEditPostButton():
     try:
-        edit_post_button = driver.find_element_by_xpath("//span[normalize-space()='Edit post']")
-        active_post_area = driver.switch_to.active_element
-        active_post_area.click(edit_post_button)
         print("Using x path to click edit button ")
-    except:
-        print("Using path is not working using ActionChains Keys.DOWN ")
-        try:
-            keys_down = 4
-            sleepTime = 1
-            implicitlyWaitTime = 20
+        #TODO: find x path and click edit button
 
-            active_post_area = driver.switch_to.active_element
-            driver.implicitly_wait(implicitlyWaitTime)
-            active_post_area.send_keys(Keys.DOWN)
+        print("Navigate Edit Button Successfully ")
+    except:
+        print("When x path is not working function using ActionChains Keys.DOWN ")
+        try:
+            #TODO: Write loop like navigatePagePostAria() to find edit button
             print("Switch active aria successful")
 
-            for i in range(keys_down):
-                actions.send_keys(Keys.DOWN)
-                time.sleep(sleepTime)
-                # actions.perform()
-                print("Pressing * " + str(i) + " * No Down Key")
-            # active_post_area.send_keys(Keys.ENTER)
-            actions.perform()
             print("Navigate Edit Button Successfully ")
         except:
-            print("in the navigateEditPostButton() area Keys.DOWN also not working")
+            print("in the navigateEditPostButton() function also not working")
 
 
 def activePostAreaAndPostInPage():
-    sleepTime = 4
-    implicitlyWaitTime = 20
-    time.sleep(sleepTime)
-
-    active_post_area = driver.switch_to.active_element
-    driver.implicitly_wait(implicitlyWaitTime)
-    time.sleep(sleepTime)
-    active_post_area.send_keys("'driver.switch_to.active_element' "
-                               "this code is a one of important snippet for facebook automation.")
-
-    actions.perform()
     print("Writing Post in the post area Successfully ")
-
-    for i in range(2):
-        driver.implicitly_wait(implicitlyWaitTime)
-        actions.send_keys(Keys.TAB * 5)
-        print(str(i) + " tabs Working")
-    actions.send_keys(Keys.ENTER)
-    actions.perform()
 
 
 chrome_options()
@@ -133,5 +103,6 @@ login()
 driver.get("https://www.facebook.com/groups/402353916617590/permalink/1630582000461436/")
 navigatePagePostAria()
 navigateEditPostButton()
+activePostAreaAndPostInPage()
 
 # driver.close()
