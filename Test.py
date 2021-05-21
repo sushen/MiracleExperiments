@@ -15,6 +15,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import pathlib
 
+
 def driver():
     global driver
     driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
@@ -34,6 +35,7 @@ def chrome_options():
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_argument("user-data-dir=chrome-data")
     chrome_options.add_argument(f"user-data-dir={scriptDirectory}\\userdata")
+
 
 def actions():
     global actions
@@ -57,42 +59,40 @@ def login():
 
 
 def navigatePagePostAria():
-    sleepTime = 4
+    total_tab = 23
+    sleepTime = .25
     implicitlyWaitTime = 20
-    for i in range(2):
+
+    for i in range(total_tab):
         driver.implicitly_wait(implicitlyWaitTime)
         actions.send_keys(Keys.BACK_SPACE)
-        actions.send_keys(Keys.TAB * 10)
+        actions.send_keys(Keys.TAB)
         time.sleep(sleepTime)
-        actions.perform()
-        print("Firast 10 tabs Working")
-
-    actions.send_keys(Keys.TAB * 6)
+        print("Pressing * " + str(i) + " * No Tab")
     actions.send_keys(Keys.ENTER)
     actions.perform()
     print("Navigate Post area Successfully ")
 
 
+def navigateEditPostButton():
+    try:
+        print("Using x path to click edit button ")
+        #TODO: find x path and click edit button
+
+        print("Navigate Edit Button Successfully ")
+    except:
+        print("When x path is not working function using ActionChains Keys.DOWN ")
+        try:
+            #TODO: Write loop like navigatePagePostAria() to find edit button
+            print("Switch active aria successful")
+
+            print("Navigate Edit Button Successfully ")
+        except:
+            print("in the navigateEditPostButton() function also not working")
+
+
 def activePostAreaAndPostInPage():
-    sleepTime = 4
-    implicitlyWaitTime = 20
-    time.sleep(sleepTime)
-
-    active_post_area = driver.switch_to.active_element
-    driver.implicitly_wait(implicitlyWaitTime)
-    time.sleep(sleepTime)
-    active_post_area.send_keys("'driver.switch_to.active_element' "
-                               "this code is a one of important snippet for facebook automation.")
-
-    actions.perform()
     print("Writing Post in the post area Successfully ")
-
-    for i in range(2):
-        driver.implicitly_wait(implicitlyWaitTime)
-        actions.send_keys(Keys.TAB * 5)
-        print(str(i) + " tabs Working")
-    actions.send_keys(Keys.ENTER)
-    actions.perform()
 
 
 chrome_options()
@@ -100,6 +100,9 @@ driver()
 driver.get("https://facebook.com")
 actions()
 login()
-driver.get("https://www.facebook.com/sushen.biswas/")
+driver.get("https://www.facebook.com/groups/402353916617590/permalink/1630582000461436/")
 navigatePagePostAria()
+navigateEditPostButton()
 activePostAreaAndPostInPage()
+
+# driver.close()
