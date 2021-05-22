@@ -47,21 +47,23 @@ driver = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options)
 global actions
 actions = ActionChains(driver)
 
-# driver.get("https://google.com")
-#
-# actions.send_keys(random_google_search)
-#
-#
-# # 1st time Running
-# total_tab = 3
-#
-# for i in range(total_tab):
-#     actions.send_keys(Keys.TAB)
-#     print("Pressing * " + str(i + 1) + " * No Tab")
-#
-# actions.send_keys(Keys.ENTER)
-# actions.perform()
-#
+search_field_xpath = "//input[@title='Search']"
+
+# 1st time Running
+
+driver.get("https://google.com")
+
+actions.send_keys(random_google_search)
+
+total_tab = 3
+
+for i in range(total_tab):
+    actions.send_keys(Keys.TAB)
+    print("Pressing * " + str(i + 1) + " * No Tab")
+
+actions.send_keys(Keys.ENTER)
+actions.perform()
+
 # # 2 second time Running
 #
 # time.sleep(5)
@@ -110,25 +112,32 @@ actions = ActionChains(driver)
 # actions.perform()
 
 
-# 4 time the loop Running
-def navigation():
-    sleep_time = .25
-    implicitly_wait_time = 2
-    google_search_actions = ActionChains(driver)
-    time.sleep(sleep_time)
-    driver.get("https://google.com")
-    google_search_actions.send_keys(random_google_search)
-
-    total_tab = 3
-    driver.implicitly_wait(implicitly_wait_time)
-    time.sleep(sleep_time)
-    for i in range(total_tab):
-        google_search_actions.send_keys(Keys.TAB)
-        print("Pressing * " + str(i + 1) + " * No Tab")
-    google_search_actions.send_keys(Keys.ENTER)
-    google_search_actions.perform()
-
-for i in range(10):
-    navigation()
-    actions.reset_actions()
-    print("Pressing * " + str(i + 1) + " * st navigation function")
+# # 4 time the loop Running
+# def navigation():
+#     time.sleep(5)
+#     # actions.reset_actions()
+#
+#     driver.get("https://google.com")
+#
+#     actions.send_keys(random_google_search)
+#
+#     total_tab = 3
+#     sleep_time = 1
+#     implicitly_wait_time = 4
+#
+#
+#     driver.implicitly_wait(implicitly_wait_time)
+#     time.sleep(sleep_time)
+#
+#     for i in range(total_tab):
+#         actions.send_keys(Keys.TAB)
+#         print("Pressing * " + str(i + 1) + " * No Tab")
+#
+#     actions.send_keys(Keys.ENTER)
+#     actions.perform()
+#
+#
+# for i in range(10):
+#     navigation()
+#     actions.reset_actions()
+#     print("Pressing * " + str(i + 1) + " * st navigation function")
