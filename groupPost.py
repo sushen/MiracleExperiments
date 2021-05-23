@@ -59,7 +59,7 @@ def login():
 
 
 def navigatePagePostAria():
-    total_tab = 23
+    total_tab = 42
     sleepTime = .25
     implicitlyWaitTime = 20
 
@@ -74,55 +74,56 @@ def navigatePagePostAria():
     print("Navigate Post area Successfully ")
 
 def navigateEditPostButton():
-    try:
-        edit_post_button = driver.find_element_by_xpath("//span[normalize-space()='Edit post']")
-        active_post_area = driver.switch_to.active_element
-        active_post_area.click(edit_post_button)
-        print("Using x path to click edit button ")
-    except:
-        print("Using path is not working using ActionChains Keys.DOWN ")
-        try:
-            keys_down = 4
-            sleepTime = 1
-            implicitlyWaitTime = 20
-
-            active_post_area = driver.switch_to.active_element
-            driver.implicitly_wait(implicitlyWaitTime)
-            active_post_area.send_keys(Keys.DOWN)
-            print("Switch active aria successful")
-
-            for i in range(keys_down):
-                actions.send_keys(Keys.DOWN)
-                time.sleep(sleepTime)
-                # actions.perform()
-                print("Pressing * " + str(i) + " * No Down Key")
-            # active_post_area.send_keys(Keys.ENTER)
-            actions.perform()
-            print("Navigate Edit Button Successfully ")
-        except:
-            print("in the navigateEditPostButton() area Keys.DOWN also not working")
-
-
-def activePostAreaAndPostInPage():
-    sleepTime = 4
+    keys_down = 2
+    sleepTime = 1
     implicitlyWaitTime = 20
-    time.sleep(sleepTime)
 
-    active_post_area = driver.switch_to.active_element
+    navigateEditPostButtonActions = ActionChains(driver)
+    driver.implicitly_wait(implicitlyWaitTime)
+    navigateEditPostButtonActions.send_keys(Keys.DOWN)
+    print("Switch active aria successful")
+
+    for i in range(keys_down):
+        navigateEditPostButtonActions.send_keys(Keys.DOWN)
+        time.sleep(sleepTime)
+        # actions.perform()
+        print("Pressing * " + str(i) + " * No Down Key")
+    navigateEditPostButtonActions.send_keys(Keys.ENTER)
+    navigateEditPostButtonActions.perform()
+    print("Navigate Edit Button Successfully ")
+
+def activePostAreaAndSelectDelet():
+    sleepTime = .25
+    implicitlyWaitTime = 20
+
+    activePostAreaAndSelectDeletActions = ActionChains(driver)
     driver.implicitly_wait(implicitlyWaitTime)
     time.sleep(sleepTime)
-    active_post_area.send_keys("'driver.switch_to.active_element' "
+    activePostAreaAndSelectDeletActions.key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL)
+    time.sleep(sleepTime)
+    activePostAreaAndSelectDeletActions.key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL)
+    activePostAreaAndSelectDeletActions.perform()
+
+def activePostAreaAndPostInPage():
+    sleepTime = .25
+    implicitlyWaitTime = 20
+
+    activePostAreaAndPostInPageActions = ActionChains(driver)
+    driver.implicitly_wait(implicitlyWaitTime)
+    time.sleep(sleepTime)
+    activePostAreaAndPostInPageActions.send_keys("'driver.switch_to.active_element' "
                                "this code is a one of important snippet for facebook automation.")
 
-    actions.perform()
+    activePostAreaAndPostInPageActions.perform()
     print("Writing Post in the post area Successfully ")
 
-    for i in range(2):
+    total_tab = 7
+    for i in range(total_tab):
         driver.implicitly_wait(implicitlyWaitTime)
-        actions.send_keys(Keys.TAB * 5)
-        print(str(i) + " tabs Working")
-    actions.send_keys(Keys.ENTER)
-    actions.perform()
+        activePostAreaAndPostInPageActions.send_keys(Keys.TAB)
+        print(str(i + 1) + " tabs Working for saving edited post")
+    activePostAreaAndPostInPageActions.send_keys(Keys.ENTER)
+    activePostAreaAndPostInPageActions.perform()
 
 
 chrome_options()
@@ -130,8 +131,17 @@ driver()
 driver.get("https://facebook.com")
 actions()
 login()
-driver.get("https://www.facebook.com/groups/402353916617590/permalink/1630582000461436/")
+driver.get("https://www.facebook.com/groups/601242797290982/permalink/993531801395411/")
+
+time.sleep(5)
 navigatePagePostAria()
+
+time.sleep(5)
 navigateEditPostButton()
 
+time.sleep(5)
+activePostAreaAndSelectDelet()
+
+time.sleep(5)
+activePostAreaAndPostInPage()
 # driver.close()
