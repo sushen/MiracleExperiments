@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import random
 
+
 # Setting the chrome_options
 global chrome_options
 chrome_options = Options()
@@ -48,21 +49,28 @@ global actions
 actions = ActionChains(driver)
 
 search_field_xpath = "//input[@title='Search']"
-
+print(search_field_xpath)
 # 1st time Running
 
 driver.get("https://google.com")
 
-actions.send_keys(random_google_search)
 
-total_tab = 3
+titleOfThePage = driver.title
+print(titleOfThePage)
 
-for i in range(total_tab):
-    actions.send_keys(Keys.TAB)
-    print("Pressing * " + str(i + 1) + " * No Tab")
+if titleOfThePage == "Google":
+    actions.send_keys(random_google_search)
 
-actions.send_keys(Keys.ENTER)
-actions.perform()
+    total_tab = 3
+
+    for i in range(total_tab):
+        actions.send_keys(Keys.TAB)
+        print("Pressing * " + str(i + 1) + " * No Tab")
+
+    actions.send_keys(Keys.ENTER)
+    actions.perform()
+else:
+    print("This page title is not Google ")
 
 # # 2 second time Running
 #
