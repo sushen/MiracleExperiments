@@ -48,8 +48,9 @@ driver = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options)
 global actions
 actions = ActionChains(driver)
 
-search_field_xpath = "//input[@title='Search']"
-print(search_field_xpath)
+# search_field_xpath = "//input[@title='Search']"
+# print(search_field_xpath)
+
 # 1st time Running
 
 driver.get("https://google.com")
@@ -66,6 +67,7 @@ if titleOfThePage == "Google":
     for i in range(total_tab):
         actions.send_keys(Keys.TAB)
         print("Pressing * " + str(i + 1) + " * No Tab")
+        print(driver.find_element)
 
     actions.send_keys(Keys.ENTER)
     actions.perform()
