@@ -27,6 +27,7 @@ group_post = "Write a Python program to convert degree to radian.  \n pi=22/7 \n
 global driver
 driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
 
+# Set the ActionChains
 global actions
 actions = ActionChains(driver)
 
@@ -54,7 +55,7 @@ def login():
 
 
 def navigateGroupPostBtn():
-    navigateGroupJoinBtnActions = ActionChains(driver)
+    # navigateGroupJoinBtnActions = ActionChains(driver)
     total_tab = 23
     sleepTime = 1
     implicitlyWaitTime = 20
@@ -62,10 +63,10 @@ def navigateGroupPostBtn():
     time.sleep(sleepTime)
     for i in range(total_tab):
         driver.implicitly_wait(implicitlyWaitTime)
-        navigateGroupJoinBtnActions.send_keys(Keys.TAB)
+        actions.send_keys(Keys.TAB)
         print("Pressing * " + str(i + 1) + " * No Tab")
-    navigateGroupJoinBtnActions.send_keys(Keys.ENTER)
-    navigateGroupJoinBtnActions.perform()
+    actions.send_keys(Keys.ENTER)
+    actions.perform_actions()
     print("Navigate Groum Join Btn Successfully ")
 
 
@@ -73,12 +74,12 @@ def activeGroupAreaAndPostInGroup():
     sleepTime = .5
     implicitlyWaitTime = 20
 
-    activePostAreaAndPostInPageActions = ActionChains(driver)
+    # activePostAreaAndPostInPageActions = ActionChains(driver)
     driver.implicitly_wait(implicitlyWaitTime)
     time.sleep(sleepTime)
     actions.send_keys(group_post)
 
-    activePostAreaAndPostInPageActions.perform()
+    actions.perform_actions()
     print("Writing Post in the post area Successfully ")
 
 
@@ -86,16 +87,16 @@ def activeGroupAreaPostBtn():
     sleepTime = .5
     implicitlyWaitTime = 20
 
-    activeGroupAreaPostBtnActions = ActionChains(driver)
+    # activeGroupAreaPostBtnActions = ActionChains(driver)
     driver.implicitly_wait(implicitlyWaitTime)
     time.sleep(sleepTime)
     total_tab = 8
     for i in range(total_tab):
         driver.implicitly_wait(implicitlyWaitTime)
-        activeGroupAreaPostBtnActions.send_keys(Keys.TAB)
+        actions.send_keys(Keys.TAB)
         print(str(i + 1) + " tabs Working for saving edited post")
-    activeGroupAreaPostBtnActions.send_keys(Keys.ENTER)
-    activeGroupAreaPostBtnActions.perform()
+    actions.send_keys(Keys.ENTER)
+    actions.perform_actions()
 
 
 login()
@@ -135,7 +136,10 @@ groupLists = [
     "https://www.facebook.com/groups/2834322033475732/",
     "https://www.facebook.com/groups/2059467967664033/",
     "https://www.facebook.com/groups/4423889427637168/",
-    "https://www.facebook.com/groups/1955664064497065/"
+    "https://www.facebook.com/groups/551975265238987/",
+    "https://www.facebook.com/groups/341334433330410/",
+    "https://www.facebook.com/groups/1955664064497065/",
+    "https://www.facebook.com/groups/programmingbasicsconcepts/"
 
 ]
 

@@ -78,10 +78,7 @@ groupLists = [
     "https://www.facebook.com/groups/bengaliprogramming/",
     "https://www.facebook.com/groups/machine.learning.bangladesh/",
     "https://www.facebook.com/groups/pirawenpython/",
-    "https://www.facebook.com/groups/programmingbasicsconcepts/",
     "https://www.facebook.com/groups/1914592312155348/",
-    "https://www.facebook.com/groups/551975265238987/",
-    "https://www.facebook.com/groups/341334433330410/",
     "https://www.facebook.com/groups/699038760180241/"
 
 
