@@ -106,9 +106,6 @@ def activeGroupAreaAndPostInGroup():
 
 driver()
 login()
-# driver.get("https://www.facebook.com/groups/601242797290982/")
-# navigateGroupPostAria()
-# activeGroupAreaAndPostInGroup()
 
 groupLinkLists = ["https://www.facebook.com/groups/601242797290982/",
                  "https://www.facebook.com/groups/2092683587684490//",

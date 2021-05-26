@@ -57,7 +57,7 @@ driver.get("https://google.com")
 
 
 titleOfThePage = driver.title
-print(titleOfThePage)
+# print(titleOfThePage)
 
 if titleOfThePage == "Google":
     actions.send_keys(random_google_search)
@@ -67,7 +67,7 @@ if titleOfThePage == "Google":
     for i in range(total_tab):
         actions.send_keys(Keys.TAB)
         print("Pressing * " + str(i + 1) + " * No Tab")
-        print(driver.find_element)
+        # print(driver.find_element)
 
     actions.send_keys(Keys.ENTER)
     actions.perform()
