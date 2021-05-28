@@ -14,9 +14,31 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import pathlib
+import random
 
-postLink = "https://www.facebook.com/groups/601242797290982/permalink/993531801395411/"
+facebook_posts = [
+    "1.' driver.switch_to.active_element' ",
+    "2.this code is a one of important snippet for facebook automation.",
+    "3.' driver.switch_to.active_element' ",
+    "4.this code is a one of important snippet for facebook automation.",
+    "5.' driver.switch_to.active_element' ",
+    "6.this code is a one of important snippet for facebook automation.",
+    "7.' driver.switch_to.active_element' ",
+    "8.this code is a one of important snippet for facebook automation.",
+    "9.' driver.switch_to.active_element' ",
+    "10.this code is a one of important snippet for facebook automation.",
+    "11.' driver.switch_to.active_element' ",
+    "12.this code is a one of important snippet for facebook automation.",
+    "13.' driver.switch_to.active_element' ",
+    "14.this code is a one of important snippet for facebook automation.",
+    "15.' driver.switch_to.active_element' ",
+    "16.this code is a one of important snippet for facebook automation."
 
+]
+
+print(random.choice(facebook_posts))
+
+random_profile_post = random.choice(facebook_posts)
 
 def driver():
     global driver
@@ -113,8 +135,7 @@ def activePostAreaAndPostInPage():
     activePostAreaAndPostInPageActions = ActionChains(driver)
     driver.implicitly_wait(implicitlyWaitTime)
     time.sleep(sleepTime)
-    activePostAreaAndPostInPageActions.send_keys("'driver.switch_to.active_element' "
-                               "this code is a one of important snippet for facebook automation.")
+    activePostAreaAndPostInPageActions.send_keys(random_profile_post)
 
     activePostAreaAndPostInPageActions.perform()
     print("Writing Post in the post area Successfully ")
@@ -130,20 +151,31 @@ def activePostAreaAndPostInPage():
 
 chrome_options()
 driver()
-driver.get("https://facebook.com")
 actions()
-login()
-driver.get(postLink)
 
-time.sleep(5)
-navigatePagePostAria()
+# LoopTest
+postLinkLists = ["https://www.facebook.com/groups/601242797290982/permalink/993531801395411/",
+                 "https://www.facebook.com/groups/2092683587684490/permalink/3073151069637732/",
+                 "https://www.facebook.com/groups/729769827368286/permalink/1462033394141922/"
+                 ]
+for postLinkList in postLinkLists:
 
-time.sleep(5)
-navigateEditPostButton()
+    driver.get("https://facebook.com")
+    login()
 
-time.sleep(5)
-activePostAreaAndSelectDelet()
+    driver.get(postLinkList)
+    print(postLinkList + " link")
 
-time.sleep(5)
-activePostAreaAndPostInPage()
-# driver.close()
+    time.sleep(5)
+    navigatePagePostAria()
+
+    time.sleep(5)
+    navigateEditPostButton()
+
+    time.sleep(5)
+    activePostAreaAndSelectDelet()
+
+    time.sleep(5)
+    activePostAreaAndPostInPage()
+
+# # driver.close()
