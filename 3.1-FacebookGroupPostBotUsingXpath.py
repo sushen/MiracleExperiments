@@ -5,7 +5,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import pathlib
-import random
 
 # Setting the chrome_options
 global chrome_options
@@ -22,29 +21,12 @@ chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 chrome_options.add_argument("user-data-dir=chrome-data")
 chrome_options.add_argument(f"user-data-dir={scriptDirectory}\\userdata")
 
-group_post = [
-    "Selenium Paid Task:  \nPlease Comment if you interested. \nIn the reply I will give you details.",
-    "Paid Task Selenium:  \nIf you interested Please Comment . \nI will give you details in the reply.",
-    "Paid Selenium  Task:  \nInterested Please Comment. \nIn the reply I will give you details.",
-    "Task Selenium Paid:  \nComment if you interested. \nIn the reply I will give you details."
-]
-random_group_post = random.choice(group_post)
+group_post = "Write a Python program to convert degree to radian.  \n pi=22/7 \n degree = float(input('Input degrees: ')) \n radian = degree*(pi/180) \n print(radian)"
 
 # Setting the driver
 global driver
 driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
 
-
-# Set the ActionChains
-# global actions
-# actions = ActionChains(driver)
-#
-# def perform_actions():
-#     """ Perform and reset actions """
-#     actions.perform()
-#     actions.reset_actions()
-#     for device in actions.w3c_actions.devices:
-#         device.clear_actions()
 
 def login():
     try:
@@ -52,9 +34,9 @@ def login():
         username = os.environ.get('facebook_zrliqi_email')
         password = os.environ.get('facebook_zrliqi_pass')
 
-        driver.find_element_by_name("email").send_keys(username)
-        driver.find_element_by_name("pass").send_keys(password)
-        driver.find_element_by_name("login").click()
+        driver.find_element("email").send_keys(username)
+        driver.find_element("pass").send_keys(password)
+        driver.find_element("login").click()
         print(input("Press any Key: "))
         print("Login work Successfully ")
 
@@ -68,13 +50,13 @@ def navigateGroupPostBtn():
     sleepTime = 1
     implicitlyWaitTime = 20
 
-    time.sleep(5)
+    time.sleep(sleepTime)
     for i in range(total_tab):
         driver.implicitly_wait(implicitlyWaitTime)
         navigateGroupJoinBtnActions.send_keys(Keys.TAB)
         print("Pressing * " + str(i + 1) + " * No Tab")
 
-    # navigateGroupJoinBtnActions.send_keys(Keys.ENTER)
+    navigateGroupJoinBtnActions.send_keys(Keys.ENTER)
     navigateGroupJoinBtnActions.perform()
     print("Navigate Group Post aria Successfully ")
     # navigateGroupJoinBtnActions.reset_actions()
@@ -87,7 +69,7 @@ def activeGroupAreaAndPostInGroup():
     activePostAreaAndPostInPageActions = ActionChains(driver)
     driver.implicitly_wait(implicitlyWaitTime)
     time.sleep(sleepTime)
-    activePostAreaAndPostInPageActions.send_keys(random_group_post)
+    activePostAreaAndPostInPageActions.send_keys(group_post)
 
     activePostAreaAndPostInPageActions.perform()
     print("Writing Post in the post area Successfully ")
@@ -101,7 +83,7 @@ def activeGroupAreaPostBtn():
     activeGroupAreaPostBtnActions = ActionChains(driver)
     driver.implicitly_wait(implicitlyWaitTime)
     time.sleep(sleepTime)
-    total_tab = 9
+    total_tab = 8
     for i in range(total_tab):
         driver.implicitly_wait(implicitlyWaitTime)
         activeGroupAreaPostBtnActions.send_keys(Keys.TAB)
@@ -159,32 +141,38 @@ groupLists = [
     "https://www.facebook.com/groups/142201439713193/",
     "https://www.facebook.com/groups/pythonprogrammingbeginners/",
     "https://www.facebook.com/groups/machine.learning.bangladesh/",
-    "https://www.facebook.com/groups/210517586045027/"
+    "https://www.facebook.com/groups/pythonbd/"
 
 ]
 
 
 def groupPost():
     for groupLinkList in groupLists:
-        driver.implicitly_wait(30)
         driver.get("https://facebook.com")
         driver.implicitly_wait(30)
         time.sleep(5)
         driver.get(groupLinkList)
         print(groupLinkList + " link")
 
-        navigateGroupPostBtn()
-        driver.implicitly_wait(30)
-        time.sleep(5)
 
-        # activeGroupAreaAndPostInGroup()
+        # // span[normalize - space() = "What's on your mind, Zrliqi?"]
+
+        path = ('// span') + ('[normalize - space()') + (' = "What') + ("'s") + (' on your mind, Zrliqi?"') + (']')
+
+        driver.find_element_by_name("What's on your mind").click()
+
+
+        # navigateGroupPostBtn()
         # driver.implicitly_wait(30)
+        # time.sleep(5)
+        #
+        # activeGroupAreaAndPostInGroup()
+        # driver.implicitly_w"https://www.facebook.com/groups/pythonbd/",ait(30)
         # time.sleep(5)
         #
         # activeGroupAreaPostBtn()
         # driver.implicitly_wait(30)
         # time.sleep(10)
-
         print(input("Press any Key: "))
 
 

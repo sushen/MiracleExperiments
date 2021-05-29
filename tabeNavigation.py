@@ -37,8 +37,8 @@ google_search = [
 
 ]
 
-random_google_search = random.choice(google_search)
-
+# random_google_search = random.choice(google_search)
+# print(random_google_search)
 # Setting the Chrome Driver
 global driver
 driver = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options)
@@ -49,6 +49,8 @@ actions = ActionChains(driver)
 
 # the loop Running
 def navigation():
+    random_google_search = random.choice(google_search)
+    print(random_google_search)
     sleep_time = .25
     implicitly_wait_time = 2
     google_search_actions = ActionChains(driver)
