@@ -4,25 +4,30 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
-import pyautogui
+import pathlib
+
 
 
 def driver():
     global driver
-    driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
+    driver = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options)
     driver.get("https://facebook.com")
 
 
 def chrome_options():
     global chrome_options
     chrome_options = Options()
+    scriptDirectory = pathlib.Path().absolute()
     chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument("--user-data-dir=chrome-data")
     chrome_options.add_argument('--profile-directory=Default')
-    prefs = {"profile.default_content_setting_values.notifications" : 2}
-    chrome_options.add_experimental_option("prefs",prefs)
+    prefs = {"profile.default_content_setting_values.notifications": 2}
+    chrome_options.add_experimental_option("prefs", prefs)
     chrome_options.add_argument('disable-infobars')
     chrome_options.add_experimental_option("useAutomationExtension", False)
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_argument("user-data-dir=chrome-data")
+    chrome_options.add_argument(f"user-data-dir={scriptDirectory}\\userdata")
 
 def actions():
     global actions
@@ -87,6 +92,7 @@ def activePostAreaAndPostInPage():
     sleepTime = 4
     implicitlyWaitTime = 20
     time.sleep(sleepTime)
+    driver.get()
 
     active_post_area = driver.switch_to.active_element
     driver.implicitly_wait(implicitlyWaitTime)
@@ -113,6 +119,63 @@ def activePostAreaAndPostInPage():
         print("2nd xpath working")
 
 
+
+
+
+
+
+def deletepost():
+    driver.get('https://www.facebook.com/groups/601242797290982/permalink/993654051383186/')
+    sleepTime = 4
+    implicitlyWaitTime = 20
+    time.sleep(sleepTime)
+    driver.find_element_by_xpath("//div[@aria-label='Actions for this post']").click()
+    driver.switch_to.active_element
+    driver.implicitly_wait(implicitlyWaitTime)
+    time.sleep(sleepTime)
+    driver.find_element_by_xpath("//span[normalize-space()='Delete post']").click()
+    time.sleep(2)
+    #driver.find_element_by_xpath("//span[@class='d2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh a8c37x1j keod5gw0 nxhoafnm aigsh9s9 d3f4x2em fe6kdd0r mau55g9w c8b282yb iv3no6db jq4qci2q a3bd9o3v lrazzd5p bwm1u5wc']//span[@class='a8c37x1j ni8dbmo4 stjgntxs l9j0dhe7 ltmttdrg g0qnabr5'][normalize-space()='Delete']").click()
+
+
+
+def editpost():
+    driver.get('https://www.facebook.com/groups/601242797290982/permalink/993654051383186/')
+    sleepTime = 4
+    implicitlyWaitTime = 20
+    time.sleep(sleepTime)
+    driver.find_element_by_xpath("//div[@aria-label='Actions for this post']").click()
+    driver.switch_to.active_element
+    driver.implicitly_wait(implicitlyWaitTime)
+    time.sleep(sleepTime)
+    driver.find_element_by_xpath("//span[normalize-space()='Edit post']").click()
+    time.sleep(2)
+
+    active_post_area = driver.switch_to.active_element
+    driver.implicitly_wait(implicitlyWaitTime)
+    time.sleep(sleepTime)
+    active_post_area.send_keys("'driver.switch_to.active_element' "
+                               "this code is a one of important snippet for facebook automation.")
+
+    actions.perform()
+    print("  Writing Post EDIT in the post area Successfully ")
+    driver.find_element_by_xpath("//span[contains(text(),'Save')]").click()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #TODO : Edith the post
 
 #TODO : Delet the Post
@@ -122,12 +185,8 @@ chrome_options()
 driver()
 actions()
 login()
-time.sleep(5)
-driver.get("https://www.facebook.com/groups/601242797290982")
-time.sleep(5)
-trytopost()
-time.sleep(2)
-activePostAreaAndPostInPage()
+deletepost()
+
 
 
 
