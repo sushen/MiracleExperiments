@@ -125,7 +125,7 @@ def activePostAreaAndPostInPage():
 
 
 def deletepost():
-    driver.get('https://www.facebook.com/groups/601242797290982/permalink/993652868049971/')
+    driver.get('https://www.facebook.com/groups/601242797290982/permalink/993654051383186/')
     sleepTime = 4
     implicitlyWaitTime = 20
     time.sleep(sleepTime)
@@ -135,7 +135,7 @@ def deletepost():
     time.sleep(sleepTime)
     driver.find_element_by_xpath("//span[normalize-space()='Delete post']").click()
     time.sleep(2)
-    driver.find_element_by_xpath("//span[@class='d2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh a8c37x1j keod5gw0 nxhoafnm aigsh9s9 d3f4x2em fe6kdd0r mau55g9w c8b282yb iv3no6db jq4qci2q a3bd9o3v lrazzd5p bwm1u5wc']//span[@class='a8c37x1j ni8dbmo4 stjgntxs l9j0dhe7 ltmttdrg g0qnabr5'][normalize-space()='Delete']").click()
+    #driver.find_element_by_xpath("//span[@class='d2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh a8c37x1j keod5gw0 nxhoafnm aigsh9s9 d3f4x2em fe6kdd0r mau55g9w c8b282yb iv3no6db jq4qci2q a3bd9o3v lrazzd5p bwm1u5wc']//span[@class='a8c37x1j ni8dbmo4 stjgntxs l9j0dhe7 ltmttdrg g0qnabr5'][normalize-space()='Delete']").click()
 
 
 
@@ -185,7 +185,7 @@ chrome_options()
 driver()
 actions()
 login()
-editpost()
+deletepost()
 
 
 
