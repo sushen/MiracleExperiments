@@ -37,7 +37,7 @@ chrome_options = Options()
 scriptDirectory = pathlib.Path().absolute()
 chrome_options.add_argument("--start-maximized")
 chrome_options.add_argument("--user-data-dir=chrome-data")
-chrome_options.add_argument('--profile-directory=Default')
+chrome_options.add_argument('--profile-directory=Profile 8')
 prefs = {"profile.default_content_setting_values.notifications": 2}
 chrome_options.add_experimental_option("prefs", prefs)
 chrome_options.add_argument('disable-infobars')
@@ -46,18 +46,17 @@ chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 chrome_options.add_argument("user-data-dir=chrome-data")
 chrome_options.add_argument(f"user-data-dir={scriptDirectory}\\userdata")
 
-
-def driver():
-    global driver
-    driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
-    driver.get("https://facebook.com")
+# Setting the driver
+global driver
+driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
+driver.get("https://facebook.com")
 
 
 def login():
     try:
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
-        username = os.environ.get('my_facebook_username')
-        password = os.environ.get('my_facebook_password')
+        username = os.environ.get('facebook_zrliqi_email')
+        password = os.environ.get('facebook_zrliqi_pass')
 
         driver.find_element_by_name("email").send_keys(username)
         driver.find_element_by_name("pass").send_keys(password)
@@ -68,21 +67,27 @@ def login():
     except:
         pass
 
-def navigateGroupPostAria():
-    navigateGroupPostAriaActions = ActionChains(driver)
-    total_tab = 40
-    sleepTime = .25
-    implicitlyWaitTime = 20
 
+def navigateGroupPostAria():
+    print("First Step Working")
+    grpupPostEditBtnXpath = "//div[@aria-label='Actions for this post']"
+    grpupPostXpathEditAria = driver.find_elements_by_xpath(grpupPostEditBtnXpath)
+    if driver.find_elements_by_xpath(grpupPostEditBtnXpath):
+        grpupPostXpathEditAria[0].click()
+        print(grpupPostXpathEditAria)
+    else:
+        print("Path Not Found")
+
+def navigateGroupPostEditBtnSecondndStep():
+    navigateGroupPostAriaActions = ActionChains(driver)
+    total_tab = 1
     for i in range(total_tab):
-        driver.implicitly_wait(implicitlyWaitTime)
-        # navigateGroupPostAriaActions.send_keys(Keys.BACK_SPACE)
-        navigateGroupPostAriaActions.send_keys(Keys.TAB)
-        time.sleep(sleepTime)
+        navigateGroupPostAriaActions.send_keys(Keys.DOWN)
         print("Pressing * " + str(i) + " * No Tab")
     navigateGroupPostAriaActions.send_keys(Keys.ENTER)
     navigateGroupPostAriaActions.perform()
     print("Navigate Post area Successfully ")
+
 
 def activeGroupAreaAndPostInGroup():
     sleepTime = .5
@@ -96,7 +101,7 @@ def activeGroupAreaAndPostInGroup():
     activePostAreaAndPostInPageActions.perform()
     print("Writing Post in the post area Successfully ")
 
-    total_tab = 9
+    total_tab = 7
     for i in range(total_tab):
         driver.implicitly_wait(implicitlyWaitTime)
         activePostAreaAndPostInPageActions.send_keys(Keys.TAB)
@@ -104,21 +109,36 @@ def activeGroupAreaAndPostInGroup():
     activePostAreaAndPostInPageActions.send_keys(Keys.ENTER)
     activePostAreaAndPostInPageActions.perform()
 
-driver()
+
 login()
 
-groupLinkLists = ["https://www.facebook.com/groups/601242797290982/",
-                 "https://www.facebook.com/groups/2092683587684490//",
-                 "https://www.facebook.com/groups/729769827368286/"
-                 ]
+groupLinkLists = ["https://www.facebook.com/groups/132593590202911/permalink/3800069366788630/",
+                  "https://www.facebook.com/groups/601242797290982/permalink/997721077643150/",
+                  "https://www.facebook.com/groups/729769827368286/permalink/1466696920342236/"
+                  ]
 
-for groupLinkList in groupLinkLists:
-    driver.get(groupLinkList)
-    print(groupLinkList + " link")
-    print(input("Press any Key: "))
 
-    time.sleep(5)
-    navigateGroupPostAria()
+def groupPost():
+    index = 0
 
-    time.sleep(5)
-    activeGroupAreaAndPostInGroup()
+    for groupLinkList in groupLinkLists:
+        driver.implicitly_wait(30)
+        time.sleep(2)
+        driver.get(groupLinkList)
+
+        print("We are in " + str(index) + " No " + groupLinkList + " Group")
+        index += 1
+
+        navigateGroupPostAria()
+        time.sleep(5)
+
+        navigateGroupPostEditBtnSecondndStep()
+        time.sleep(5)
+
+        activeGroupAreaAndPostInGroup()
+        time.sleep(5)
+
+        print(input("Press any Key: "))
+
+
+groupPost()
