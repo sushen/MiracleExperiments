@@ -181,4 +181,4 @@ groupPost()
 EndTime = time.time()
 print("This Script End " + time.ctime())
 totalRunningTime = EndTime - StartTime
-print("This Script is running for" + totalRunningTime + " time.")
+print("This Script is running for " + str(int(totalRunningTime)) + " Second.")
