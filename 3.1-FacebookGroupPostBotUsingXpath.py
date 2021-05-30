@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 import pathlib
 import random
 
-#Time Counting
+# Time Counting
 StartTime = time.time()
 print("This Script Start " + time.ctime())
 
@@ -38,6 +38,7 @@ global driver
 driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
 driver.get("https://facebook.com")
 
+
 def login():
     try:
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
@@ -57,9 +58,11 @@ def login():
 def navigateGroupPostBtn():
     grpupPostXpath = "//span[contains(text(),'s on your mind,')]"
     grpupPostX2ndpath = "//span[contains(text(),'Create a public post…')]"
+    grpupPostX3rdpath = "//span[contains(text(),'Start Discussion')]"
 
     grpupPostXpathAria = driver.find_elements_by_xpath(grpupPostXpath)
     grpupPost2ndXpathAria = driver.find_elements_by_xpath(grpupPostX2ndpath)
+    grpupPost3rdXpathAria = driver.find_elements_by_xpath(grpupPostX3rdpath)
 
     if driver.find_elements_by_xpath(grpupPostXpath):
         grpupPostXpathAria[0].click()
@@ -69,8 +72,25 @@ def navigateGroupPostBtn():
         grpupPost2ndXpathAria[0].click()
         print(grpupPostX2ndpath + "is the 2nd Xpath and its working")
 
+    # TODO: Find Bugs in this statements
+    elif driver.find_elements_by_xpath(grpupPostX3rdpath):
+        grpupPost3rdXpathAria[0].click()
+        print(grpupPostX3rdpath + "is the 3rd Xpath and its working")
+
     else:
         print("Path Not Found")
+
+
+# TODO: Writhe a function for got it
+def activeGroupAreaAndPostInGroup():
+    groupRulesXpath = "//span[contains(text(),'Got It')]"
+    groupRulesXpathAria = driver.find_elements_by_xpath(groupRulesXpath)
+
+    if driver.find_elements_by_xpath(groupRulesXpath):
+        groupRulesXpathAria[0].click()
+        print(groupRulesXpathAria + "is the 1st Xpath and its working")
+    else:
+        print("Path Not Found and Regular Post continue")
 
 
 def activeGroupAreaAndPostInGroup():
@@ -135,10 +155,10 @@ groupLists = [
     # "https://www.facebook.com/groups/pirawenpython/",
     # "https://www.facebook.com/groups/programming.school/",
     # "https://www.facebook.com/groups/632595694006151/",
-    "https://www.facebook.com/groups/142201439713193/",
     # "https://www.facebook.com/groups/pythonprogrammingbeginners/",
     # "https://www.facebook.com/groups/machine.learning.bangladesh/",
-    # "https://www.facebook.com/groups/pythonbd/"
+    # "https://www.facebook.com/groups/pythonbd/",
+    "https://www.facebook.com/groups/142201439713193/"
 
 ]
 
@@ -164,10 +184,11 @@ def groupPost():
         time.sleep(10)
         # print(input("Press any Key: "))
 
+
 login()
 groupPost()
 
-#Time Counting
+# Time Counting
 EndTime = time.time()
 print("This Script End " + time.ctime())
 totalRunningTime = EndTime - StartTime
