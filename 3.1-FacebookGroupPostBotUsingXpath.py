@@ -44,9 +44,9 @@ def login():
         username = os.environ.get('facebook_zrliqi_email')
         password = os.environ.get('facebook_zrliqi_pass')
 
-        driver.find_element("email").send_keys(username)
-        driver.find_element("pass").send_keys(password)
-        driver.find_element("login").click()
+        driver.find_element_by_id("email").send_keys(username)
+        driver.find_element_by_id("pass").send_keys(password)
+        driver.find_element_by_name("login").click()
         print(input("Press any Key: "))
         print("Login work Successfully ")
 
@@ -92,22 +92,12 @@ def activeGroupAreaPostBtn():
     PostBtnXpath = "// span[contains(text(), 'Post')]"
     grpupPostBtn = driver.find_elements_by_xpath(PostBtnXpath)
     if driver.find_elements_by_xpath(PostBtnXpath):
-        grpupPostBtn[0].click()
+        # grpupPostBtn[0].click()
         print(grpupPostBtn)
     else:
         print("Post Button Not Found")
 
 
-login()
-
-testGroupLists = [
-    "https://www.facebook.com/groups/3051881851503314/",
-    "https://www.facebook.com/groups/10ms.programming/",
-    "https://www.facebook.com/groups/601242797290982/",
-    "https://www.facebook.com/groups/729769827368286/",
-    "https://www.facebook.com/groups/2092683587684490/",
-    "https://www.facebook.com/groups/132593590202911/"
-]
 groupLists = [
     "https://www.facebook.com/groups/pythonsnake2/",
     "https://www.facebook.com/groups/3051881851503314/",
@@ -172,9 +162,9 @@ def groupPost():
 
         activeGroupAreaPostBtn()
         time.sleep(10)
-        # print(input("Press any Key: "))
+        print(input("Press any Key: "))
 
-
+login()
 groupPost()
 
 #Time Counting
