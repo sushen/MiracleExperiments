@@ -152,7 +152,7 @@ groupLists = [
 def groupPost():
     index = 0
 
-    for groupLinkList in testGroupLists:
+    for groupLinkList in groupLists:
         driver.implicitly_wait(30)
         time.sleep(2)
         driver.get(groupLinkList)
