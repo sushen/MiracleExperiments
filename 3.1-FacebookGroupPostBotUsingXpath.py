@@ -7,6 +7,10 @@ from selenium.webdriver.common.keys import Keys
 import pathlib
 import random
 
+#Time Counting
+StartTime = time.time()
+print("This Script Start " + time.ctime())
+
 # Setting the chrome_options
 global chrome_options
 chrome_options = Options()
@@ -152,7 +156,7 @@ groupLists = [
 def groupPost():
     index = 0
 
-    for groupLinkList in groupLists:
+    for groupLinkList in testGroupLists:
         driver.implicitly_wait(30)
         time.sleep(2)
         driver.get(groupLinkList)
@@ -161,14 +165,20 @@ def groupPost():
         index += 1
 
         navigateGroupPostBtn()
-        time.sleep(5)
+        time.sleep(1)
 
         activeGroupAreaAndPostInGroup()
         time.sleep(5)
 
         activeGroupAreaPostBtn()
         time.sleep(10)
-        print(input("Press any Key: "))
+        # print(input("Press any Key: "))
 
 
 groupPost()
+
+#Time Counting
+EndTime = time.time()
+print("This Script End " + time.ctime())
+totalRunningTime = EndTime - StartTime
+print("This Script is running for" + totalRunningTime + " time.")
