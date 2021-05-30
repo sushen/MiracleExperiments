@@ -99,46 +99,46 @@ def activeGroupAreaPostBtn():
 
 
 groupLists = [
-    "https://www.facebook.com/groups/pythonsnake2/",
-    "https://www.facebook.com/groups/3051881851503314/",
-    "https://www.facebook.com/groups/10ms.programming/",
-    "https://www.facebook.com/groups/softwebtuts/",
-    "https://www.facebook.com/groups/997975157020313/",
-    "https://www.facebook.com/groups/stacklearner/",
-    "https://www.facebook.com/groups/366190054572553/",
-    "https://www.facebook.com/groups/pypcom/",
-    "https://www.facebook.com/groups/118355661537061/",
-    "https://www.facebook.com/groups/402353916617590/",
-    "https://www.facebook.com/groups/pythonsnake/",
-    "https://www.facebook.com/groups/youngcodersLP/",
-    "https://www.facebook.com/groups/pythonQA/",
-    "https://www.facebook.com/groups/pythonprogrammingclub/",
-    "https://www.facebook.com/groups/python/",
-    "https://www.facebook.com/groups/InsaneTech/",
-    "https://www.facebook.com/groups/302806677466652/",
-    "https://www.facebook.com/groups/python.morioh/",
-    "https://www.facebook.com/groups/2030059543915989/",
-    "https://www.facebook.com/groups/493854764823932/",
-    "https://www.facebook.com/groups/828941034587334/",
-    "https://www.facebook.com/groups/135196957162117/",
-    "https://www.facebook.com/groups/mathfordatascience/",
-    "https://www.facebook.com/groups/2616981278627207",
-    "https://www.facebook.com/groups/djangodevelopersnetwork/",
-    "https://www.facebook.com/groups/2834322033475732/",
-    "https://www.facebook.com/groups/2059467967664033/",
-    "https://www.facebook.com/groups/4423889427637168/",
-    "https://www.facebook.com/groups/551975265238987/",
-    "https://www.facebook.com/groups/341334433330410/",
-    "https://www.facebook.com/groups/1955664064497065/",
-    "https://www.facebook.com/groups/programmingbasicsconcepts/",
-    "https://www.facebook.com/groups/1914592312155348",
-    "https://www.facebook.com/groups/pirawenpython/",
-    "https://www.facebook.com/groups/programming.school/",
-    "https://www.facebook.com/groups/632595694006151/",
+    # "https://www.facebook.com/groups/pythonsnake2/",
+    # "https://www.facebook.com/groups/3051881851503314/",
+    # "https://www.facebook.com/groups/10ms.programming/",
+    # "https://www.facebook.com/groups/softwebtuts/",
+    # "https://www.facebook.com/groups/997975157020313/",
+    # "https://www.facebook.com/groups/stacklearner/",
+    # "https://www.facebook.com/groups/366190054572553/",
+    # "https://www.facebook.com/groups/pypcom/",
+    # "https://www.facebook.com/groups/118355661537061/",
+    # "https://www.facebook.com/groups/402353916617590/",
+    # "https://www.facebook.com/groups/pythonsnake/",
+    # "https://www.facebook.com/groups/youngcodersLP/",
+    # "https://www.facebook.com/groups/pythonQA/",
+    # "https://www.facebook.com/groups/pythonprogrammingclub/",
+    # "https://www.facebook.com/groups/python/",
+    # "https://www.facebook.com/groups/InsaneTech/",
+    # "https://www.facebook.com/groups/302806677466652/",
+    # "https://www.facebook.com/groups/python.morioh/",
+    # "https://www.facebook.com/groups/2030059543915989/",
+    # "https://www.facebook.com/groups/493854764823932/",
+    # "https://www.facebook.com/groups/828941034587334/",
+    # "https://www.facebook.com/groups/135196957162117/",
+    # "https://www.facebook.com/groups/mathfordatascience/",
+    # "https://www.facebook.com/groups/2616981278627207",
+    # "https://www.facebook.com/groups/djangodevelopersnetwork/",
+    # "https://www.facebook.com/groups/2834322033475732/",
+    # "https://www.facebook.com/groups/2059467967664033/",
+    # "https://www.facebook.com/groups/4423889427637168/",
+    # "https://www.facebook.com/groups/551975265238987/",
+    # "https://www.facebook.com/groups/341334433330410/",
+    # "https://www.facebook.com/groups/1955664064497065/",
+    # "https://www.facebook.com/groups/programmingbasicsconcepts/",
+    # "https://www.facebook.com/groups/1914592312155348",
+    # "https://www.facebook.com/groups/pirawenpython/",
+    # "https://www.facebook.com/groups/programming.school/",
+    # "https://www.facebook.com/groups/632595694006151/",
     "https://www.facebook.com/groups/142201439713193/",
-    "https://www.facebook.com/groups/pythonprogrammingbeginners/",
-    "https://www.facebook.com/groups/machine.learning.bangladesh/",
-    "https://www.facebook.com/groups/pythonbd/"
+    # "https://www.facebook.com/groups/pythonprogrammingbeginners/",
+    # "https://www.facebook.com/groups/machine.learning.bangladesh/",
+    # "https://www.facebook.com/groups/pythonbd/"
 
 ]
 
@@ -162,7 +162,7 @@ def groupPost():
 
         activeGroupAreaPostBtn()
         time.sleep(10)
-        print(input("Press any Key: "))
+        # print(input("Press any Key: "))
 
 login()
 groupPost()
@@ -171,4 +171,5 @@ groupPost()
 EndTime = time.time()
 print("This Script End " + time.ctime())
 totalRunningTime = EndTime - StartTime
-print("This Script is running for " + str(int(totalRunningTime)) + " Second.")
+print("This Script is running for " + str(int(totalRunningTime)) + " Second. or\n")
+print("This Script is running for " + str(int(totalRunningTime / 60)) + " Minutes.")

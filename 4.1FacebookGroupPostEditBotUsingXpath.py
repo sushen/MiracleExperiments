@@ -106,9 +106,6 @@ def clickSaveBtn():
     driver.find_element_by_xpath(SaveBtnXpath).click()
 
 
-
-login()
-
 groupLinkLists = ["https://www.facebook.com/groups/132593590202911/permalink/3800069366788630/",
                   "https://www.facebook.com/groups/601242797290982/permalink/997721077643150/",
                   "https://www.facebook.com/groups/729769827368286/permalink/1466696920342236/"
@@ -140,5 +137,5 @@ def groupPost():
 
         # print(input("Press any Key: "))
 
-
+login()
 groupPost()
