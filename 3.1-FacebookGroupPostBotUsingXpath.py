@@ -92,7 +92,7 @@ def activeGroupAreaPostBtn():
     PostBtnXpath = "// span[contains(text(), 'Post')]"
     grpupPostBtn = driver.find_elements_by_xpath(PostBtnXpath)
     if driver.find_elements_by_xpath(PostBtnXpath):
-        # grpupPostBtn[0].click()
+        grpupPostBtn[0].click()
         print(grpupPostBtn)
     else:
         print("Post Button Not Found")
@@ -146,7 +146,7 @@ groupLists = [
 def groupPost():
     index = 0
 
-    for groupLinkList in testGroupLists:
+    for groupLinkList in groupLists:
         driver.implicitly_wait(30)
         time.sleep(2)
         driver.get(groupLinkList)
