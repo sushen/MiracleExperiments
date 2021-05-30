@@ -26,7 +26,7 @@ group_post = "Write a Python program to convert degree to radian.  \n pi=22/7 \n
 # Setting the driver
 global driver
 driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
-
+driver.get("https://facebook.com")
 
 def login():
     try:
@@ -45,21 +45,13 @@ def login():
 
 
 def navigateGroupPostBtn():
-    navigateGroupJoinBtnActions = ActionChains(driver)
-    total_tab = 23
-    sleepTime = 1
-    implicitlyWaitTime = 20
-
-    time.sleep(sleepTime)
-    for i in range(total_tab):
-        driver.implicitly_wait(implicitlyWaitTime)
-        navigateGroupJoinBtnActions.send_keys(Keys.TAB)
-        print("Pressing * " + str(i + 1) + " * No Tab")
-
-    navigateGroupJoinBtnActions.send_keys(Keys.ENTER)
-    navigateGroupJoinBtnActions.perform()
-    print("Navigate Group Post aria Successfully ")
-    # navigateGroupJoinBtnActions.reset_actions()
+    grpupPostXpath = "//span[contains(text(),'s on your mind,')]"
+    grpupPostXpathAria = driver.find_elements_by_xpath(grpupPostXpath)
+    if driver.find_elements_by_xpath(grpupPostXpath):
+        grpupPostXpathAria[0].click()
+        print(grpupPostXpathAria)
+    else:
+        print("Path Not Found")
 
 
 def activeGroupAreaAndPostInGroup():
@@ -77,20 +69,13 @@ def activeGroupAreaAndPostInGroup():
 
 
 def activeGroupAreaPostBtn():
-    sleepTime = .5
-    implicitlyWaitTime = 20
-
-    activeGroupAreaPostBtnActions = ActionChains(driver)
-    driver.implicitly_wait(implicitlyWaitTime)
-    time.sleep(sleepTime)
-    total_tab = 8
-    for i in range(total_tab):
-        driver.implicitly_wait(implicitlyWaitTime)
-        activeGroupAreaPostBtnActions.send_keys(Keys.TAB)
-        print(str(i + 1) + " tabs Working for saving edited post")
-    activeGroupAreaPostBtnActions.send_keys(Keys.ENTER)
-    activeGroupAreaPostBtnActions.perform()
-    # activeGroupAreaPostBtnActions.reset_actions()
+    PostBtnXpath = "// span[contains(text(), 'Post')]"
+    grpupPostBtn = driver.find_elements_by_xpath(PostBtnXpath)
+    if driver.find_elements_by_xpath(PostBtnXpath):
+        grpupPostBtn[0].click()
+        print(grpupPostBtn)
+    else:
+        print("Path Not Found")
 
 
 login()
@@ -147,33 +132,25 @@ groupLists = [
 
 
 def groupPost():
-    for groupLinkList in groupLists:
-        driver.get("https://facebook.com")
+    index = 0
+
+    for groupLinkList in testGroupLists:
         driver.implicitly_wait(30)
-        time.sleep(5)
+        time.sleep(2)
         driver.get(groupLinkList)
-        print(groupLinkList + " link")
 
+        print("We are in " + str(index) + " No " + groupLinkList + " Group")
+        index += 1
 
-        # // span[normalize - space() = "What's on your mind, Zrliqi?"]
+        navigateGroupPostBtn()
+        time.sleep(5)
 
-        path = ('// span') + ('[normalize - space()') + (' = "What') + ("'s") + (' on your mind, Zrliqi?"') + (']')
+        activeGroupAreaAndPostInGroup()
+        time.sleep(5)
 
-        driver.find_element_by_name("What's on your mind").click()
-
-
-        # navigateGroupPostBtn()
-        # driver.implicitly_wait(30)
-        # time.sleep(5)
-        #
-        # activeGroupAreaAndPostInGroup()
-        # driver.implicitly_w"https://www.facebook.com/groups/pythonbd/",ait(30)
-        # time.sleep(5)
-        #
-        # activeGroupAreaPostBtn()
-        # driver.implicitly_wait(30)
-        # time.sleep(10)
-        print(input("Press any Key: "))
+        activeGroupAreaPostBtn()
+        time.sleep(10)
+        # print(input("Press any Key: "))
 
 
 groupPost()

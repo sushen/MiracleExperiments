@@ -46,8 +46,13 @@ def login():
 
 
 def navigateGroupJoinBtn():
-
-    print("Join Group")
+    joinBtnXpath = "//span[contains(text(),'Join Group')]"
+    joinBtnSelector = driver.find_elements_by_xpath(joinBtnXpath)
+    if driver.find_elements_by_xpath(joinBtnXpath):
+        joinBtnSelector[2].click()
+        print(joinBtnSelector[0])
+    else:
+        print("Path Not Found")
 
 
 driver()
@@ -56,7 +61,6 @@ login()
 
 groupLists = [
     "https://www.facebook.com/groups/improgramer/",
-    "https://www.facebook.com/groups/pythonbd/",
     "https://www.facebook.com/groups/HTML.CSSandJavaScript/",
     "https://www.facebook.com/groups/308915099815447/",
     "https://www.facebook.com/groups/DeepNetGroup/",
@@ -68,9 +72,9 @@ groupLists = [
 
 for groupLinkList in groupLists:
     driver.get(groupLinkList)
-    print(groupLinkList + " link")
+    print("We are in " + groupLinkList + " Group")
     time.sleep(5)
 
-    navigateGroupJoinBtn()
+    # navigateGroupJoinBtn()
     time.sleep(10)
-    print(input("Press any Key: "))
+    # print(input("Press any Key: "))
