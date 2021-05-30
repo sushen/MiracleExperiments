@@ -5,6 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import pathlib
+import random
 
 # Setting the chrome_options
 global chrome_options
@@ -21,8 +22,13 @@ chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 chrome_options.add_argument("user-data-dir=chrome-data")
 chrome_options.add_argument(f"user-data-dir={scriptDirectory}\\userdata")
 
-group_post = "Write a Python program to convert degree to radian.  \n pi=22/7 \n degree = float(input('Input degrees: ')) \n radian = degree*(pi/180) \n print(radian)"
+group_post = [
+    "Hello, \nI am very excited about Python and Automation.\nI like to help 2 people learning Python\nand Automation in this week.\nIf you 1 hours time in the evening after 6 p.m\nContact me personally.\nI will be glad to help you personally.",
+    "Hi, \nI am very excited about Automation and Python.\nI like to help 2 people learning Automation \nand Python in this week.\nIf you 1 hours time in the evening after 6 p.m\npersonally contact me.\nI will be glad to help you one to one session.",
+    "Greeting, \nI am very excited about Python and Automation.\nI want to help 2 people learning Python\nand Automation in this week.\nIf you 1 hours time in the evening after 6 p.m\nContact me personally.\nI will be glad to help you personally.",
+    "Hi Python Lover, \nI am very excited about Python and Automation.\nI like to help 2 people learning Python\nand Automation in this week.\nIf you 1 hours time in the evening after 6 p.m\npersonally contact me.\nI will be glad to help you one to one session."
 
+]
 # Setting the driver
 global driver
 driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
@@ -46,22 +52,32 @@ def login():
 
 def navigateGroupPostBtn():
     grpupPostXpath = "//span[contains(text(),'s on your mind,')]"
+    grpupPostX2ndpath = "//span[contains(text(),'Create a public post…')]"
+
     grpupPostXpathAria = driver.find_elements_by_xpath(grpupPostXpath)
+    grpupPost2ndXpathAria = driver.find_elements_by_xpath(grpupPostX2ndpath)
+
     if driver.find_elements_by_xpath(grpupPostXpath):
         grpupPostXpathAria[0].click()
-        print(grpupPostXpathAria)
+        print(grpupPostXpath + "is the 1st Xpath and its working")
+
+    elif driver.find_elements_by_xpath(grpupPostX2ndpath):
+        grpupPost2ndXpathAria[0].click()
+        print(grpupPostX2ndpath + "is the 2nd Xpath and its working")
+
     else:
         print("Path Not Found")
 
 
 def activeGroupAreaAndPostInGroup():
+    random_profile_post = random.choice(group_post)
     sleepTime = .5
     implicitlyWaitTime = 20
 
     activePostAreaAndPostInPageActions = ActionChains(driver)
     driver.implicitly_wait(implicitlyWaitTime)
     time.sleep(sleepTime)
-    activePostAreaAndPostInPageActions.send_keys(group_post)
+    activePostAreaAndPostInPageActions.send_keys(random_profile_post)
 
     activePostAreaAndPostInPageActions.perform()
     print("Writing Post in the post area Successfully ")
@@ -75,12 +91,14 @@ def activeGroupAreaPostBtn():
         grpupPostBtn[0].click()
         print(grpupPostBtn)
     else:
-        print("Path Not Found")
+        print("Post Button Not Found")
 
 
 login()
 
 testGroupLists = [
+    "https://www.facebook.com/groups/3051881851503314/",
+    "https://www.facebook.com/groups/10ms.programming/",
     "https://www.facebook.com/groups/601242797290982/",
     "https://www.facebook.com/groups/729769827368286/",
     "https://www.facebook.com/groups/2092683587684490/",
@@ -150,7 +168,7 @@ def groupPost():
 
         activeGroupAreaPostBtn()
         time.sleep(10)
-        # print(input("Press any Key: "))
+        print(input("Press any Key: "))
 
 
 groupPost()

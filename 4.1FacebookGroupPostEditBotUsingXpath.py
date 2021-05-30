@@ -8,22 +8,10 @@ import pathlib
 import random
 
 facebook_posts = [
-    "1.' driver.switch_to.active_element' ",
-    "2.this code is a one of important snippet for facebook automation.",
-    "3.' driver.switch_to.active_element' ",
-    "4.this code is a one of important snippet for facebook automation.",
-    "5.' driver.switch_to.active_element' ",
-    "6.this code is a one of important snippet for facebook automation.",
-    "7.' driver.switch_to.active_element' ",
-    "8.this code is a one of important snippet for facebook automation.",
-    "9.' driver.switch_to.active_element' ",
-    "10.this code is a one of important snippet for facebook automation.",
-    "11.' driver.switch_to.active_element' ",
-    "12.this code is a one of important snippet for facebook automation.",
-    "13.' driver.switch_to.active_element' ",
-    "14.this code is a one of important snippet for facebook automation.",
-    "15.' driver.switch_to.active_element' ",
-    "16.this code is a one of important snippet for facebook automation."
+    "1.Hello \nI am very excited about Python and Automation.\nI like to help 2 people learning Python\nand Automation in this week.\nIf you 1 hours time in the evening after 6 p.m\nContact me personally.\nI will be glad to help you personally.",
+    "2.Hi \nI am very excited about Automation and Python.\nI like to help 2 people learning Automation \nand Python in this week.\nIf you 1 hours time in the evening after 6 p.m\npersonally contact me.\nI will be glad to help you one to one session.",
+    "3.Greeting \nI am very excited about Python and Automation.\nI want to help 2 people learning Python\nand Automation in this week.\nIf you 1 hours time in the evening after 6 p.m\nContact me personally.\nI will be glad to help you personally.",
+    "4.Hi Python Lover \nI am very excited about Python and Automation.\nI like to help 2 people learning Python\nand Automation in this week.\nIf you 1 hours time in the evening after 6 p.m\npersonally contact me.\nI will be glad to help you one to one session."
 
 ]
 
