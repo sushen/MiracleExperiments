@@ -72,7 +72,6 @@ def navigateGroupPostBtn():
         grpupPost2ndXpathAria[0].click()
         print(grpupPostX2ndpath + "is the 2nd Xpath and its working")
 
-    # TODO: Find Bugs in this statements
     elif driver.find_elements_by_xpath(grpupPostX3rdpath):
         grpupPost3rdXpathAria[0].click()
         print(grpupPostX3rdpath + "is the 3rd Xpath and its working")
