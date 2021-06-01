@@ -60,7 +60,35 @@ driver.implicitly_wait(20)
 time.sleep(5)
 
 
+def chatWindow():
+    driver.implicitly_wait(10)
+    time.sleep(2)
+    chatWindowXpath = "//input[@placeholder='Search Messenger']"
+    chatWindowPathAria = driver.find_elements_by_xpath(chatWindowXpath)
+
+    if driver.find_elements_by_xpath(chatWindowXpath):
+        chatWindowPathAria[0].click()
+        chatWindowPathAria[0].send_keys(Keys.ENTER)
+        chatWindowPathAria[0].send_keys(Keys.TAB)
+        print(chatWindowXpath + "is the 1st Xpath and its working")
+    else:
+        print("Path Not Found and Copy New X path and Replace Old One")
+
+
+def nextChatWindow():
+    driver.implicitly_wait(10)
+    time.sleep(2)
+    print("Arrow Down Star")
+    actionsForNext = ActionChains(driver)
+    keyDown = actionsForNext.send_keys(Keys.DOWN)
+    actionsForNext.send_keys(Keys.ENTER)
+    actionsForNext.perform()
+    print("Arrow Down End")
+
+
 def fbMassageBoxArea():
+    driver.implicitly_wait(10)
+    time.sleep(2)
     fbMassageBoxXpath = "//div[@class='_1mf _1mj']"
     fbMassageBoxpathAria = driver.find_elements_by_xpath(fbMassageBoxXpath)
 
@@ -71,24 +99,39 @@ def fbMassageBoxArea():
         print("Path Not Found and Copy New X path and Replace Old One")
 
 
-login()
-
-
 def fbMassageForNewMassage():
-    for i in range(5):
-        fbMassageBoxArea()
-        activeActions = ActionChains(driver)
-        activeActions.send_keys("....")
-        activeActions.send_keys(Keys.ENTER)
-        activeActions.perform()
-        driver.refresh()
+    driver.implicitly_wait(10)
+    time.sleep(2)
+    activeActions = ActionChains(driver)
+    activeActions.send_keys("Do you know OOP.")
+    activeActions.send_keys(Keys.ENTER)
+    activeActions.perform()
 
 
+login()
+chatWindow()
+fbMassageBoxArea()
 fbMassageForNewMassage()
+
+for keyMove in range(15):
+    time.sleep(5)
+    chatWindow()
+
+    # This is the function for doing something and incremental way
+    actionsForNext = ActionChains(driver)
+    keyMove = keyMove + 1
+    actionsForNext.send_keys(Keys.DOWN * keyMove)
+    actionsForNext.send_keys(Keys.ENTER)
+    actionsForNext.perform()
+
+    fbMassageBoxArea()
+    fbMassageForNewMassage()
+
+
 
 # Time Counting
 EndTime = time.time()
-print("This Script End " + time.ctime())
+print("\nThis Script End " + time.ctime())
 totalRunningTime = EndTime - StartTime
 print("This Script is running for " + str(int(totalRunningTime)) + " Second. or\n")
 print("This Script is running for " + str(int(totalRunningTime / 60)) + " Minutes.")
