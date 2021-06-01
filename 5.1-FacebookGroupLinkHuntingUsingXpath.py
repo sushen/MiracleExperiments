@@ -6,6 +6,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import pathlib
 import random
+import pyperclip as pc
+
 
 # Time Counting
 StartTime = time.time()
@@ -56,18 +58,80 @@ def login():
 
 
 def fbGroupArea():
-    fbGroupAreaXpath = "//a[@aria-label='Groups']"
+    driver.implicitly_wait(30)
+    time.sleep(1)
+    fbGroupAreaXpath = "//input[@placeholder='Search groups']"
     fbGroupAreaXpathAria = driver.find_elements_by_xpath(fbGroupAreaXpath)
 
     if driver.find_elements_by_xpath(fbGroupAreaXpath):
         fbGroupAreaXpathAria[0].click()
         print(fbGroupAreaXpath + "is the 1st Xpath and its working")
     else:
-        print("Path Not Found and Regular Post continue")
+        print("Path Not Found ")
+
+
+def firstGroupLink():
+    driver.implicitly_wait(30)
+    time.sleep(1)
+    firstGroupActions = ActionChains(driver)
+    total_tab = 5
+    for i in range(total_tab):
+        firstGroupActions.send_keys(Keys.TAB)
+        print(str(i + 1) + " tabs Working.")
+    firstGroupActions.send_keys(Keys.ENTER)
+    firstGroupActions.perform()
+    print("We are in first Group")
+
+
+def groupOpenNewTab():
+    driver.implicitly_wait(30)
+    time.sleep(1)
+    groupOpenActions = ActionChains(driver)
+    groupOpenActions.send_keys(Keys.ENTER)
+    groupOpenActions.perform()
+    print("We are in New Tab")
+
+
+def nextGroup():
+    driver.implicitly_wait(30)
+    time.sleep(1)
+    nextGroupActions = ActionChains(driver)
+    nextGroupActions.send_keys(Keys.TAB)
+    nextGroupActions.send_keys(Keys.ENTER)
+    nextGroupActions.perform()
+    print("We are in New Tab")
 
 
 login()
+driver.get("https://www.facebook.com/groups/")
 fbGroupArea()
+firstGroupLink()
+
+groupUrl = []
+for i in range(100):
+    groupOpenNewTab()
+    nextGroup()
+    pc.copy(driver.current_url)
+    groupUrl = pc.paste()
+    print(groupUrl)
+
+    # Write Url in a file
+    groupUrlForList = '"' + groupUrl + '"' + ",\n"
+
+    line_index = 3
+    lines = None
+    with open('file.txt', 'r') as file_handler:
+        lines = file_handler.readlines()
+
+    lines.insert(line_index, groupUrlForList)
+
+    with open('file.txt', 'w') as file_handler:
+        file_handler.writelines(lines)
+
+    time.sleep(5)
+    print("We are in " + str(i) + " No Group")
+    # print(input("Press any Key: "))
+
 
 
 # Time Counting

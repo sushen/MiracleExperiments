@@ -55,80 +55,77 @@ def login():
         pass
 
 
-driver.get("https://www.facebook.com/messages/")
 driver.implicitly_wait(20)
 time.sleep(5)
 
-
-def chatWindow():
-    driver.implicitly_wait(10)
-    time.sleep(2)
-    chatWindowXpath = "//input[@placeholder='Search Messenger']"
-    chatWindowPathAria = driver.find_elements_by_xpath(chatWindowXpath)
-
-    if driver.find_elements_by_xpath(chatWindowXpath):
-        chatWindowPathAria[0].click()
-        chatWindowPathAria[0].send_keys(Keys.ENTER)
-        chatWindowPathAria[0].send_keys(Keys.TAB)
-        print(chatWindowXpath + "is the 1st Xpath and its working")
-    else:
-        print("Path Not Found and Copy New X path and Replace Old One")
+profileLinkLists = [
+    # "https://www.facebook.com/rakeshkumar.lenka.71",
+    "https://www.facebook.com/nihan.mahmud.39",
+    "https://www.facebook.com/rizwan.ansari.1422409"
+]
 
 
-def nextChatWindow():
-    driver.implicitly_wait(10)
-    time.sleep(2)
-    print("Arrow Down Star")
-    actionsForNext = ActionChains(driver)
-    keyDown = actionsForNext.send_keys(Keys.DOWN)
-    actionsForNext.send_keys(Keys.ENTER)
-    actionsForNext.perform()
-    print("Arrow Down End")
+def personalProfileNav():
+    index = 0
+    for profileLinkList in profileLinkLists:
+        driver.implicitly_wait(30)
+        time.sleep(2)
+        driver.get(profileLinkList)
+
+        print("We are in " + str(index) + " No Profile link : " + profileLinkList)
+        index += 1
+        # print(input("Press any Key: "))
+
+        # Navigate Profile Massage Aria
+        ProfileMassageBtnXpath = "// span[contains(text(), 'Message')]"
+        ProfileMassageBtnXpathAria = driver.find_elements_by_xpath(ProfileMassageBtnXpath)
+        if driver.find_elements_by_xpath(ProfileMassageBtnXpath):
+            ProfileMassageBtnXpathAria[0].click()
+            print(ProfileMassageBtnXpathAria[0])
+        elif driver.find_elements_by_xpath(ProfileMassageBtnXpath):
+            ProfileMassageBtnXpathAria[1].click()
+            print(ProfileMassageBtnXpathAria[1])
+        else:
+            print("Path Not Found")
+        print(input("Press any Key: "))
+        print("Profile Massage Aria")
+
+        # Navigate Below Massage Aria
+        massageBtnXpath = "//div[@class='_1mf _1mj']"
+        massageBtnXpathAria = driver.find_elements_by_xpath(massageBtnXpath)
+        if driver.find_elements_by_xpath(massageBtnXpath):
+            massageBtnXpathAria[0].click()
+            print(massageBtnXpathAria)
+        else:
+            print("Path Not Found")
+        # print(input("Press any Key: "))
+        print("Below Massage Aria")
+
+        # Send Massage
+        driver.implicitly_wait(10)
+        time.sleep(2)
+        activeActions = ActionChains(driver)
+        activeActions.key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL)
+        activeActions.send_keys("Why we need automation in our regular life?")
+        activeActions.send_keys(Keys.ENTER)
+        activeActions.perform()
+        print("Send Personal Massage")
+        time.sleep(5)
+        print(input("Press any Key: "))
+
+        # Close Massage
+        closeMassageBtnXpath = "//div[@aria-label='Close chat']//*[local-name()='svg']"
+        closeMassageBtnXpathAria = driver.find_elements_by_xpath(closeMassageBtnXpath)
+        if driver.find_elements_by_xpath(closeMassageBtnXpath):
+            closeMassageBtnXpathAria[0].click()
+            print(closeMassageBtnXpathAria)
+        else:
+            print("Path Not Found")
+        print("Close Massage Aria")
+        # print(input("Press any Key: "))
 
 
-def fbMassageBoxArea():
-    driver.implicitly_wait(10)
-    time.sleep(2)
-    fbMassageBoxXpath = "//div[@class='_1mf _1mj']"
-    fbMassageBoxpathAria = driver.find_elements_by_xpath(fbMassageBoxXpath)
-
-    if driver.find_elements_by_xpath(fbMassageBoxXpath):
-        fbMassageBoxpathAria[0].click()
-        print(fbMassageBoxXpath + "is the 1st Xpath and its working")
-    else:
-        print("Path Not Found and Copy New X path and Replace Old One")
-
-
-def fbMassageForNewMassage():
-    driver.implicitly_wait(10)
-    time.sleep(2)
-    activeActions = ActionChains(driver)
-    activeActions.key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL)
-    activeActions.send_keys("Hi")
-    activeActions.send_keys(Keys.ENTER)
-    activeActions.perform()
-
-
-login()
-chatWindow()
-fbMassageBoxArea()
-fbMassageForNewMassage()
-
-for keyMove in range(15):
-    time.sleep(5)
-    chatWindow()
-
-    # This is the function for doing something and incremental way
-    actionsForNext = ActionChains(driver)
-    keyMove = keyMove + 1
-    actionsForNext.send_keys(Keys.DOWN * keyMove)
-    actionsForNext.send_keys(Keys.ENTER)
-    actionsForNext.perform()
-
-    fbMassageBoxArea()
-    fbMassageForNewMassage()
-
-
+personalProfileNav()
 
 # Time Counting
 EndTime = time.time()
