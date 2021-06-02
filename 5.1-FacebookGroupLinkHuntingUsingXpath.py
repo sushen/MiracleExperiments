@@ -59,7 +59,7 @@ def login():
 
 def fbGroupArea():
     driver.implicitly_wait(30)
-    time.sleep(1)
+    time.sleep(2)
     fbGroupAreaXpath = "//input[@placeholder='Search groups']"
     fbGroupAreaXpathAria = driver.find_elements_by_xpath(fbGroupAreaXpath)
 
@@ -72,7 +72,7 @@ def fbGroupArea():
 
 def firstGroupLink():
     driver.implicitly_wait(30)
-    time.sleep(1)
+    time.sleep(2)
     firstGroupActions = ActionChains(driver)
     total_tab = 5
     for i in range(total_tab):
@@ -85,7 +85,7 @@ def firstGroupLink():
 
 def groupOpenNewTab():
     driver.implicitly_wait(30)
-    time.sleep(1)
+    time.sleep(2)
     groupOpenActions = ActionChains(driver)
     groupOpenActions.send_keys(Keys.ENTER)
     groupOpenActions.perform()
@@ -94,7 +94,7 @@ def groupOpenNewTab():
 
 def nextGroup():
     driver.implicitly_wait(30)
-    time.sleep(1)
+    time.sleep(2)
     nextGroupActions = ActionChains(driver)
     nextGroupActions.send_keys(Keys.TAB)
     nextGroupActions.send_keys(Keys.ENTER)
@@ -108,7 +108,8 @@ fbGroupArea()
 firstGroupLink()
 
 groupUrl = []
-for i in range(100):
+for i in range(50):
+    driver.implicitly_wait(30)
     groupOpenNewTab()
     nextGroup()
     pc.copy(driver.current_url)
@@ -116,7 +117,7 @@ for i in range(100):
     print(groupUrl)
 
     # Write Url in a file
-    groupUrlForList = '"' + groupUrl + '"' + ",\n"
+    groupUrlForList = groupUrl
 
     line_index = 3
     lines = None
