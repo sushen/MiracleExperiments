@@ -72,6 +72,8 @@ def login():
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
         username = os.environ.get('my_facebook_username')
         password = os.environ.get('my_facebook_password')
+        print(username)
+        print(input("Press any Key: "))
 
         driver.find_element_by_name("email").send_keys(username)
         driver.find_element_by_name("pass").send_keys(password)

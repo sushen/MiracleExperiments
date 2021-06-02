@@ -6,8 +6,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import pathlib
 import random
-import pyperclip as pc
-import winsound
 
 # Time Counting
 StartTime = time.time()
@@ -19,7 +17,7 @@ chrome_options = Options()
 scriptDirectory = pathlib.Path().absolute()
 chrome_options.add_argument("--start-maximized")
 chrome_options.add_argument("--user-data-dir=chrome-data")
-chrome_options.add_argument('--profile-directory=Default')
+chrome_options.add_argument('--profile-directory=Profile 8')
 prefs = {"profile.default_content_setting_values.notifications": 2}
 chrome_options.add_experimental_option("prefs", prefs)
 chrome_options.add_argument('disable-infobars')
@@ -44,11 +42,8 @@ driver.get("https://facebook.com")
 def login():
     try:
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
-        username = os.environ.get('my_facebook_username')
-        password = os.environ.get('my_facebook_password')
-        print(username)
-        # print(password)
-        # print(input("Press any Key: "))
+        username = os.environ.get('facebook_zrliqi_email')
+        password = os.environ.get('facebook_zrliqi_pass')
 
         driver.find_element_by_id("email").send_keys(username)
         driver.find_element_by_id("pass").send_keys(password)
@@ -60,102 +55,81 @@ def login():
         pass
 
 
-def fbGroupArea():
-    driver.implicitly_wait(30)
-    time.sleep(2)
-    fbGroupAreaXpath = "//input[@placeholder='Search Groups']"
-    fbGroupAreaXpathAria = driver.find_elements_by_xpath(fbGroupAreaXpath)
+driver.implicitly_wait(20)
+time.sleep(5)
 
-    if driver.find_elements_by_xpath(fbGroupAreaXpath):
-        fbGroupAreaXpathAria[0].click()
-        print(fbGroupAreaXpath + "is the 1st Xpath and its working")
-    else:
-        print("Path Not Found ")
-        print(input("You Path is not found it will create wrong Navigation fixed it: "))
+profileLinkLists = [
+    # "https://www.facebook.com/rakeshkumar.lenka.71",
+    "https://www.facebook.com/nihan.mahmud.39",
+    "https://www.facebook.com/rizwan.ansari.1422409"
+]
 
 
-def firstGroupLink():
-    driver.implicitly_wait(30)
-    time.sleep(2)
-    firstGroupActions = ActionChains(driver)
-    total_tab = 9
-    for i in range(total_tab):
-        firstGroupActions.send_keys(Keys.TAB)
-        print(str(i + 1) + " tabs Working.")
-    firstGroupActions.send_keys(Keys.ENTER)
-    firstGroupActions.perform()
-    print("We are in first Group")
-
-
-def groupOpenNewTab():
-    driver.implicitly_wait(30)
-    time.sleep(2)
-    groupOpenActions = ActionChains(driver)
-    groupOpenActions.send_keys(Keys.ENTER)
-    groupOpenActions.perform()
-    print("We are in New Tab")
-
-
-def nextGroup():
-    driver.implicitly_wait(30)
-    time.sleep(2)
-    nextGroupActions = ActionChains(driver)
-    nextGroupActions.send_keys(Keys.TAB)
-    nextGroupActions.send_keys(Keys.ENTER)
-    nextGroupActions.perform()
-    print("We are in New Tab")
-
-
-login()
-driver.get("https://www.facebook.com/groups/")
-driver.implicitly_wait(30)
-time.sleep(2)
-fbGroupArea()
-driver.implicitly_wait(30)
-time.sleep(2)
-firstGroupLink()
-# print(input("Press any Key: "))
-
-
-def groupLinkCopy():
-    groupUrl = []
-    for i in range(20):
+def personalProfileNav():
+    index = 0
+    for profileLinkList in profileLinkLists:
         driver.implicitly_wait(30)
-        groupOpenNewTab()
-        nextGroup()
-        pc.copy(driver.current_url)
-        groupUrl = pc.paste()
-        print(groupUrl)
+        time.sleep(2)
+        driver.get(profileLinkList)
 
-        # Write Url in a file
-        groupUrlForList = str(i) + ". " + groupUrl + "\n"
+        print("We are in " + str(index) + " No Profile link : " + profileLinkList)
+        index += 1
+        # print(input("Press any Key: "))
 
-        line_index = 3
-        lines = None
-        with open('file.txt', 'r') as file_handler:
-            lines = file_handler.readlines()
+        # Navigate Profile Massage Aria
+        ProfileMassageBtnXpath = "// span[contains(text(), 'Message')]"
+        ProfileMassageBtnXpathAria = driver.find_elements_by_xpath(ProfileMassageBtnXpath)
+        if driver.find_elements_by_xpath(ProfileMassageBtnXpath):
+            ProfileMassageBtnXpathAria[0].click()
+            print(ProfileMassageBtnXpathAria[0])
+        elif driver.find_elements_by_xpath(ProfileMassageBtnXpath):
+            ProfileMassageBtnXpathAria[1].click()
+            print(ProfileMassageBtnXpathAria[1])
+        else:
+            print("Path Not Found")
+        print(input("Press any Key: "))
+        print("Profile Massage Aria")
 
-        lines.insert(line_index, groupUrlForList)
+        # Navigate Below Massage Aria
+        massageBtnXpath = "//div[@class='_1mf _1mj']"
+        massageBtnXpathAria = driver.find_elements_by_xpath(massageBtnXpath)
+        if driver.find_elements_by_xpath(massageBtnXpath):
+            massageBtnXpathAria[0].click()
+            print(massageBtnXpathAria)
+        else:
+            print("Path Not Found")
+        # print(input("Press any Key: "))
+        print("Below Massage Aria")
 
-        with open('file.txt', 'w') as file_handler:
-            file_handler.writelines(lines)
+        # Send Massage
+        driver.implicitly_wait(10)
+        time.sleep(2)
+        activeActions = ActionChains(driver)
+        activeActions.key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL)
+        activeActions.send_keys("Why we need automation in our regular life?")
+        activeActions.send_keys(Keys.ENTER)
+        activeActions.perform()
+        print("Send Personal Massage")
+        time.sleep(5)
+        print(input("Press any Key: "))
 
-        time.sleep(8)
-        print("We are in " + str(i) + " No Group")
+        # Close Massage
+        closeMassageBtnXpath = "//div[@aria-label='Close chat']//*[local-name()='svg']"
+        closeMassageBtnXpathAria = driver.find_elements_by_xpath(closeMassageBtnXpath)
+        if driver.find_elements_by_xpath(closeMassageBtnXpath):
+            closeMassageBtnXpathAria[0].click()
+            print(closeMassageBtnXpathAria)
+        else:
+            print("Path Not Found")
+        print("Close Massage Aria")
         # print(input("Press any Key: "))
 
 
-duration = 500  # milliseconds
-freq = 440  # Hz
-for i in range(2):
-    groupLinkCopy()
-    winsound.Beep(freq, duration)
-    print(input("20 Group Link Recorded Press any key to continue: "))
-
+personalProfileNav()
 
 # Time Counting
 EndTime = time.time()
-print("This Script End " + time.ctime())
+print("\nThis Script End " + time.ctime())
 totalRunningTime = EndTime - StartTime
 print("This Script is running for " + str(int(totalRunningTime)) + " Second. or\n")
 print("This Script is running for " + str(int(totalRunningTime / 60)) + " Minutes.")
