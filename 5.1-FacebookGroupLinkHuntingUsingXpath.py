@@ -8,7 +8,6 @@ import pathlib
 import random
 import pyperclip as pc
 
-
 # Time Counting
 StartTime = time.time()
 print("This Script Start " + time.ctime())
@@ -19,7 +18,7 @@ chrome_options = Options()
 scriptDirectory = pathlib.Path().absolute()
 chrome_options.add_argument("--start-maximized")
 chrome_options.add_argument("--user-data-dir=chrome-data")
-chrome_options.add_argument('--profile-directory=Profile 8')
+chrome_options.add_argument('--profile-directory=Default')
 prefs = {"profile.default_content_setting_values.notifications": 2}
 chrome_options.add_experimental_option("prefs", prefs)
 chrome_options.add_argument('disable-infobars')
@@ -44,8 +43,11 @@ driver.get("https://facebook.com")
 def login():
     try:
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
-        username = os.environ.get('facebook_zrliqi_email')
-        password = os.environ.get('facebook_zrliqi_pass')
+        username = os.environ.get('my_facebook_username')
+        password = os.environ.get('my_facebook_password')
+        print(username)
+        # print(password)
+        # print(input("Press any Key: "))
 
         driver.find_element_by_id("email").send_keys(username)
         driver.find_element_by_id("pass").send_keys(password)
@@ -60,7 +62,7 @@ def login():
 def fbGroupArea():
     driver.implicitly_wait(30)
     time.sleep(2)
-    fbGroupAreaXpath = "//input[@placeholder='Search groups']"
+    fbGroupAreaXpath = "//input[@placeholder='Search Groups']"
     fbGroupAreaXpathAria = driver.find_elements_by_xpath(fbGroupAreaXpath)
 
     if driver.find_elements_by_xpath(fbGroupAreaXpath):
@@ -68,13 +70,14 @@ def fbGroupArea():
         print(fbGroupAreaXpath + "is the 1st Xpath and its working")
     else:
         print("Path Not Found ")
+        print(input("You Path is not found it will create wrong Navigation fixed it: "))
 
 
 def firstGroupLink():
     driver.implicitly_wait(30)
     time.sleep(2)
     firstGroupActions = ActionChains(driver)
-    total_tab = 5
+    total_tab = 9
     for i in range(total_tab):
         firstGroupActions.send_keys(Keys.TAB)
         print(str(i + 1) + " tabs Working.")
@@ -104,35 +107,44 @@ def nextGroup():
 
 login()
 driver.get("https://www.facebook.com/groups/")
+driver.implicitly_wait(30)
+time.sleep(2)
 fbGroupArea()
+driver.implicitly_wait(30)
+time.sleep(2)
 firstGroupLink()
+print(input("Press any Key: "))
 
-groupUrl = []
-for i in range(50):
-    driver.implicitly_wait(30)
-    groupOpenNewTab()
-    nextGroup()
-    pc.copy(driver.current_url)
-    groupUrl = pc.paste()
-    print(groupUrl)
 
-    # Write Url in a file
-    groupUrlForList = groupUrl
+def groupLinkCopy():
+    groupUrl = []
+    for i in range(20):
+        driver.implicitly_wait(30)
+        groupOpenNewTab()
+        nextGroup()
+        pc.copy(driver.current_url)
+        groupUrl = pc.paste()
+        print(groupUrl)
 
-    line_index = 3
-    lines = None
-    with open('file.txt', 'r') as file_handler:
-        lines = file_handler.readlines()
+        # Write Url in a file
+        groupUrlForList = str(i) + ". " + groupUrl + "\n"
 
-    lines.insert(line_index, groupUrlForList)
+        line_index = 3
+        lines = None
+        with open('file.txt', 'r') as file_handler:
+            lines = file_handler.readlines()
 
-    with open('file.txt', 'w') as file_handler:
-        file_handler.writelines(lines)
+        lines.insert(line_index, groupUrlForList)
 
-    time.sleep(5)
-    print("We are in " + str(i) + " No Group")
-    # print(input("Press any Key: "))
+        with open('file.txt', 'w') as file_handler:
+            file_handler.writelines(lines)
 
+        time.sleep(8)
+        print("We are in " + str(i) + " No Group")
+        # print(input("Press any Key: "))
+
+
+groupLinkCopy()
 
 
 # Time Counting
