@@ -55,77 +55,32 @@ def login():
         pass
 
 
-driver.implicitly_wait(20)
-time.sleep(5)
-
-profileLinkLists = [
-    # "https://www.facebook.com/rakeshkumar.lenka.71",
-    "https://www.facebook.com/nihan.mahmud.39",
-    "https://www.facebook.com/rizwan.ansari.1422409"
+groupPostList = [
+    "https://www.facebook.com/groups/402353916617590/permalink/1644448839074752/",
+    "https://www.facebook.com/groups/mathfordatascience/permalink/1461052630895489/",
+    "https://www.facebook.com/groups/youngcodersLP/permalink/1498237833901959/",
+    "https://www.facebook.com/groups/366190054572553/permalink/508867153638175/",
+    "https://www.facebook.com/groups/632595694006151/permalink/858058588126526",
+    "https://www.facebook.com/groups/youngcodersLP/permalink/1498237833901959/",
+    "https://www.facebook.com/groups/118355661537061/permalink/4158266657545921/",
+    "https://www.facebook.com/groups/machine.learning.bangladesh/permalink/1150708802101898/",
+    "https://www.facebook.com/groups/pythonsnake/permalink/5829285400422492/",
+    "https://www.facebook.com/groups/135196957162117/permalink/791655444849595/",
+    "https://www.facebook.com/groups/programmingbasicsconcepts/permalink/1168579300275791/",
+    "https://www.facebook.com/groups/pythonsnake/permalink/5829991850351847/",
+    "https://www.facebook.com/groups/10ms.programming/permalink/2178588115617675",
+    "https://www.facebook.com/groups/2092683587684490/permalink/3073151069637732/",
+    "https://www.facebook.com/groups/729769827368286/permalink/1462033394141922/"
 ]
 
+for groupPost in groupPostList:
+    driver.get(groupPost)
+    print(driver.title)
+    print(groupPost + " link")
+    time.sleep(2)
 
-def personalProfileNav():
-    index = 0
-    for profileLinkList in profileLinkLists:
-        driver.implicitly_wait(30)
-        time.sleep(2)
-        driver.get(profileLinkList)
-
-        print("We are in " + str(index) + " No Profile link : " + profileLinkList)
-        index += 1
-        # print(input("Press any Key: "))
-
-        # Navigate Profile Massage Aria
-        ProfileMassageBtnXpath = "// span[contains(text(), 'Message')]"
-        ProfileMassageBtnXpathAria = driver.find_elements_by_xpath(ProfileMassageBtnXpath)
-        if driver.find_elements_by_xpath(ProfileMassageBtnXpath):
-            ProfileMassageBtnXpathAria[0].click()
-            print(ProfileMassageBtnXpathAria[0])
-        elif driver.find_elements_by_xpath(ProfileMassageBtnXpath):
-            ProfileMassageBtnXpathAria[1].click()
-            print(ProfileMassageBtnXpathAria[1])
-        else:
-            print("Path Not Found")
-        print(input("Press any Key: "))
-        print("Profile Massage Aria")
-
-        # Navigate Below Massage Aria
-        massageBtnXpath = "//div[@class='_1mf _1mj']"
-        massageBtnXpathAria = driver.find_elements_by_xpath(massageBtnXpath)
-        if driver.find_elements_by_xpath(massageBtnXpath):
-            massageBtnXpathAria[0].click()
-            print(massageBtnXpathAria)
-        else:
-            print("Path Not Found")
-        # print(input("Press any Key: "))
-        print("Below Massage Aria")
-
-        # Send Massage
-        driver.implicitly_wait(10)
-        time.sleep(2)
-        activeActions = ActionChains(driver)
-        activeActions.key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL)
-        activeActions.send_keys("Why we need automation in our regular life?")
-        activeActions.send_keys(Keys.ENTER)
-        activeActions.perform()
-        print("Send Personal Massage")
-        time.sleep(5)
-        print(input("Press any Key: "))
-
-        # Close Massage
-        closeMassageBtnXpath = "//div[@aria-label='Close chat']//*[local-name()='svg']"
-        closeMassageBtnXpathAria = driver.find_elements_by_xpath(closeMassageBtnXpath)
-        if driver.find_elements_by_xpath(closeMassageBtnXpath):
-            closeMassageBtnXpathAria[0].click()
-            print(closeMassageBtnXpathAria)
-        else:
-            print("Path Not Found")
-        print("Close Massage Aria")
-        # print(input("Press any Key: "))
-
-
-personalProfileNav()
+driver.implicitly_wait(20)
+time.sleep(5)
 
 # Time Counting
 EndTime = time.time()

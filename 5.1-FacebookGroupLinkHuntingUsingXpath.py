@@ -125,6 +125,7 @@ def groupLinkCopy():
         nextGroup()
         pc.copy(driver.current_url)
         groupUrl = pc.paste()
+        print(driver.title)
         print(groupUrl)
 
         # Write Url in a file
