@@ -183,7 +183,8 @@ def groupLinkCopy():
         print(groupUrl)
 
         # Write Url in a file
-        groupUrlForList = str(i) + ". " + groupUrl + "\n"
+        # groupUrlForList = str(i) + ". " + groupUrl + "\n"
+        groupUrlForList = groupUrl + "\n"
 
         line_index = 3
         lines = None
