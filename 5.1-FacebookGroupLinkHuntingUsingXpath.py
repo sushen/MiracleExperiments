@@ -124,12 +124,12 @@ def smallScroll():
     print("We are in New Tab")
 
 def navigateSpecificGroup():
-    for i in range(10):
-        spectatedTitle1 = 'DOGELIVE FREE +2% DAILY! | Facebook'
-        spectatedTitle2 = '(1) DOGELIVE FREE +2% DAILY! | Facebook'
-        spectatedTitle3 = '(2) DOGELIVE FREE +2% DAILY! | Facebook'
-        spectatedTitle4 = '(3) DOGELIVE FREE +2% DAILY! | Facebook'
-        spectatedTitle5 = '(4) DOGELIVE FREE +2% DAILY! | Facebook'
+    for i in range(1000):
+        spectatedTitle1 = 'DOGELIVE FREE +2% DAILY! | Groups | Facebook'
+        spectatedTitle2 = '(1) DOGELIVE FREE +2% DAILY! | Groups | Facebook'
+        spectatedTitle3 = '(2) DOGELIVE FREE +2% DAILY! | Groups | Facebook'
+        spectatedTitle4 = '(3) DOGELIVE FREE +2% DAILY! | Groups | Facebook'
+        spectatedTitle5 = '(4) DOGELIVE FREE +2% DAILY! | Groups | Facebook'
 
         currentGroupTitle = driver.title
         # print(currentGroupTitle)
@@ -152,7 +152,7 @@ def navigateSpecificGroup():
             nextGroup()
             time.sleep(2)
             print("We are searching in " + str(i) + " no Tab")
-            print("'" + currentGroupTitle + "' is current title, we are looking for " + spectatedTitle1 + "' title")
+            print("'" + currentGroupTitle + "' is current title, we are looking for '" + spectatedTitle1 + "' title")
     bigScroll()
 
 
