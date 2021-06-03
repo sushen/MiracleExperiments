@@ -123,6 +123,38 @@ def smallScroll():
     smallScrollActions.perform()
     print("We are in New Tab")
 
+def navigateSpecificGroup():
+    for i in range(10):
+        spectatedTitle1 = 'ManyChat Community | Groups | Facebook'
+        spectatedTitle2 = '(1) ManyChat Community | Groups | Facebook'
+        spectatedTitle3 = '(2) ManyChat Community | Groups | Facebook'
+        spectatedTitle4 = '(3) ManyChat Community | Groups | Facebook'
+        spectatedTitle5 = '(4) ManyChat Community | Groups | Facebook'
+
+        currentGroupTitle = driver.title
+        # print(currentGroupTitle)
+        if currentGroupTitle == spectatedTitle1 \
+                or currentGroupTitle == spectatedTitle2\
+                or currentGroupTitle == spectatedTitle3\
+                or currentGroupTitle == spectatedTitle4\
+                or currentGroupTitle == spectatedTitle5:
+
+            print("'" + currentGroupTitle + "' is current title, we are looking for " + spectatedTitle1 + "' title")
+            print("title match")
+
+            #Sound
+            winsound.Beep(440, 1500)
+
+            print(input("Take manual decision then enter: "))
+            break
+
+        else:
+            nextGroup()
+            time.sleep(2)
+            print("We are searching in " + str(i) + " no Tab")
+            print("'" + currentGroupTitle + "' is current title, we are looking for " + spectatedTitle1 + "' title")
+    bigScroll()
+
 
 login()
 driver.get("https://www.facebook.com/groups/")
@@ -134,8 +166,8 @@ time.sleep(2)
 firstGroupLink()
 bigScroll()
 
-
-# print(input("Press any Key: "))
+# Call it when you want to start from some Specific group
+navigateSpecificGroup()
 
 
 def groupLinkCopy():
@@ -174,7 +206,7 @@ for i in range(100):
     groupLinkCopy()
     winsound.Beep(freq, duration)
     bigScroll()
-    print(input("20 Group Link Recorded Press any key to continue: "))
+    print(input(str(i) + "' st 22 Group Link Recorded Press any key to continue: "))
 
 # Time Counting
 EndTime = time.time()
