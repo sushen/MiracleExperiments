@@ -125,11 +125,11 @@ def smallScroll():
 
 def navigateSpecificGroup():
     for i in range(10):
-        spectatedTitle1 = 'ManyChat Community | Groups | Facebook'
-        spectatedTitle2 = '(1) ManyChat Community | Groups | Facebook'
-        spectatedTitle3 = '(2) ManyChat Community | Groups | Facebook'
-        spectatedTitle4 = '(3) ManyChat Community | Groups | Facebook'
-        spectatedTitle5 = '(4) ManyChat Community | Groups | Facebook'
+        spectatedTitle1 = 'DOGELIVE FREE +2% DAILY! | Facebook'
+        spectatedTitle2 = '(1) DOGELIVE FREE +2% DAILY! | Facebook'
+        spectatedTitle3 = '(2) DOGELIVE FREE +2% DAILY! | Facebook'
+        spectatedTitle4 = '(3) DOGELIVE FREE +2% DAILY! | Facebook'
+        spectatedTitle5 = '(4) DOGELIVE FREE +2% DAILY! | Facebook'
 
         currentGroupTitle = driver.title
         # print(currentGroupTitle)
@@ -139,7 +139,7 @@ def navigateSpecificGroup():
                 or currentGroupTitle == spectatedTitle4\
                 or currentGroupTitle == spectatedTitle5:
 
-            print("'" + currentGroupTitle + "' is current title, we are looking for " + spectatedTitle1 + "' title")
+            print("'" + currentGroupTitle + "' is current title, we are looking for '" + spectatedTitle1 + "' title")
             print("title match")
 
             #Sound
