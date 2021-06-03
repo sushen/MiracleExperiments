@@ -56,16 +56,16 @@ def login():
 
 
 groupPostList = [
-    "https://www.facebook.com/groups/402353916617590/permalink/1644448839074752/",
+    "https://www.facebook.com/groups/118355661537061/permalink/4158266657545921/",
     "https://www.facebook.com/groups/mathfordatascience/permalink/1461052630895489/",
+    "https://www.facebook.com/groups/135196957162117/permalink/791655444849595/",
+    "https://www.facebook.com/groups/402353916617590/permalink/1644448839074752/",
     "https://www.facebook.com/groups/youngcodersLP/permalink/1498237833901959/",
     "https://www.facebook.com/groups/366190054572553/permalink/508867153638175/",
     "https://www.facebook.com/groups/632595694006151/permalink/858058588126526",
     "https://www.facebook.com/groups/youngcodersLP/permalink/1498237833901959/",
-    "https://www.facebook.com/groups/118355661537061/permalink/4158266657545921/",
     "https://www.facebook.com/groups/machine.learning.bangladesh/permalink/1150708802101898/",
     "https://www.facebook.com/groups/pythonsnake/permalink/5829285400422492/",
-    "https://www.facebook.com/groups/135196957162117/permalink/791655444849595/",
     "https://www.facebook.com/groups/programmingbasicsconcepts/permalink/1168579300275791/",
     "https://www.facebook.com/groups/pythonsnake/permalink/5829991850351847/",
     "https://www.facebook.com/groups/10ms.programming/permalink/2178588115617675",
@@ -73,14 +73,76 @@ groupPostList = [
     "https://www.facebook.com/groups/729769827368286/permalink/1462033394141922/"
 ]
 
+
+def navigateCommentWhenNavigateCommentNotFound():
+    driver.implicitly_wait(20)
+    time.sleep(2)
+    # Navigate Comment Aria
+    navigateCommentWhenNavigateCommentNotFoundBtnXpath = "//div[@aria-label='Actions for this post']"
+    navigateCommentWhenNavigateCommentNotFoundBtnXpathAria = driver.find_elements_by_xpath(navigateCommentWhenNavigateCommentNotFoundBtnXpath)
+    if driver.find_elements_by_xpath(navigateCommentWhenNavigateCommentNotFoundBtnXpath):
+        navigateCommentWhenNavigateCommentNotFoundBtnXpathAria[0].click()
+        print(navigateCommentWhenNavigateCommentNotFoundBtnXpathAria[0])
+
+        navigateCommentWhenNavigateCommentNotFoundActions = ActionChains(driver)
+        total_tab = 2
+        for i in range(total_tab):
+            navigateCommentWhenNavigateCommentNotFoundActions.send_keys(Keys.TAB)
+            print(str(i + 1) + " tabs Working for navigateCommentWhenNavigateCommentNotFoundActions Like btn navigation")
+        navigateCommentWhenNavigateCommentNotFoundActions.send_keys(Keys.ENTER)
+        navigateCommentWhenNavigateCommentNotFoundActions.perform()
+    else:
+        print("Path Not Found ")
+        print(input("You Path is not found it will create wrong Navigation fixed it: "))
+
+
+def navigateComment():
+    driver.implicitly_wait(20)
+    time.sleep(2)
+    # Navigate Profile Massage Aria
+    CommentBtnXpath = "//span[contains(text(),'comments')]"
+    navigateCommentWhenNavigateCommentNotFoundBtnXpath = "//div[@aria-label='Actions for this post']"
+    CommentBtnXpathAria = driver.find_elements_by_xpath(CommentBtnXpath)
+    if driver.find_elements_by_xpath(CommentBtnXpath):
+        CommentBtnXpathAria[0].click()
+        print(CommentBtnXpathAria[0])
+        print("1st path working")
+
+    elif driver.find_elements_by_xpath(navigateCommentWhenNavigateCommentNotFoundBtnXpath):
+        navigateCommentWhenNavigateCommentNotFound()
+        print("2nd path working")
+
+    else:
+        print("Path Not Found ")
+        print(input("You Path is not found it will create wrong Navigation fixed it: "))
+
+
+def navigateLikeAria():
+    driver.implicitly_wait(20)
+    time.sleep(2)
+    navigateLikeAriaActions = ActionChains(driver)
+    total_tab = 1
+    for i in range(total_tab):
+        navigateLikeAriaActions.send_keys(Keys.TAB)
+        print(str(i + 1) + " tabs Working for Like btn navigation")
+    navigateLikeAriaActions.send_keys(Keys.ENTER)
+    navigateLikeAriaActions.perform()
+
+
+driver.implicitly_wait(20)
+time.sleep(5)
+
 for groupPost in groupPostList:
     driver.get(groupPost)
     print(driver.title)
     print(groupPost + " link")
     time.sleep(2)
 
-driver.implicitly_wait(20)
-time.sleep(5)
+    navigateComment()
+    navigateLikeAria()
+    
+    time.sleep(2)
+    # print(input("Press any Key: "))
 
 # Time Counting
 EndTime = time.time()

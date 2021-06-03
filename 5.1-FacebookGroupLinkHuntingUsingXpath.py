@@ -76,7 +76,7 @@ def fbGroupArea():
 
 def firstGroupLink():
     driver.implicitly_wait(30)
-    time.sleep(2)
+    time.sleep(1)
     firstGroupActions = ActionChains(driver)
     total_tab = 9
     for i in range(total_tab):
@@ -89,7 +89,7 @@ def firstGroupLink():
 
 def groupOpenNewTab():
     driver.implicitly_wait(30)
-    time.sleep(2)
+    time.sleep(1)
     groupOpenActions = ActionChains(driver)
     groupOpenActions.send_keys(Keys.ENTER)
     groupOpenActions.perform()
@@ -98,11 +98,29 @@ def groupOpenNewTab():
 
 def nextGroup():
     driver.implicitly_wait(30)
-    time.sleep(2)
+    time.sleep(.1)
     nextGroupActions = ActionChains(driver)
     nextGroupActions.send_keys(Keys.TAB)
     nextGroupActions.send_keys(Keys.ENTER)
     nextGroupActions.perform()
+    print("We are in New Tab")
+
+
+def bigScroll():
+    driver.implicitly_wait(30)
+    time.sleep(2)
+    bigScrollActions = ActionChains(driver)
+    bigScrollActions.send_keys(Keys.PAGE_DOWN)
+    bigScrollActions.perform()
+    print("We are in New Tab")
+
+
+def smallScroll():
+    driver.implicitly_wait(30)
+    time.sleep(.1)
+    smallScrollActions = ActionChains(driver)
+    smallScrollActions.send_keys(Keys.ARROW_DOWN)
+    smallScrollActions.perform()
     print("We are in New Tab")
 
 
@@ -114,15 +132,19 @@ fbGroupArea()
 driver.implicitly_wait(30)
 time.sleep(2)
 firstGroupLink()
+bigScroll()
+
+
 # print(input("Press any Key: "))
 
 
 def groupLinkCopy():
     groupUrl = []
-    for i in range(20):
+    for i in range(22):
         driver.implicitly_wait(30)
         groupOpenNewTab()
         nextGroup()
+        smallScroll()
         pc.copy(driver.current_url)
         groupUrl = pc.paste()
         print(driver.title)
@@ -141,18 +163,18 @@ def groupLinkCopy():
         with open('file.txt', 'w') as file_handler:
             file_handler.writelines(lines)
 
-        time.sleep(8)
+        time.sleep(1)
         print("We are in " + str(i) + " No Group")
         # print(input("Press any Key: "))
 
 
 duration = 500  # milliseconds
 freq = 440  # Hz
-for i in range(2):
+for i in range(100):
     groupLinkCopy()
     winsound.Beep(freq, duration)
+    bigScroll()
     print(input("20 Group Link Recorded Press any key to continue: "))
-
 
 # Time Counting
 EndTime = time.time()
