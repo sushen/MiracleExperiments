@@ -92,7 +92,7 @@ def firstGroupLink():
 
 def nextGroup():
     driver.implicitly_wait(30)
-    time.sleep(.1)
+    time.sleep(1)
     nextGroupActions = ActionChains(driver)
     nextGroupActions.send_keys(Keys.TAB)
     nextGroupActions.send_keys(Keys.ENTER)
@@ -111,20 +111,36 @@ def bigScroll():
 
 def smallScroll():
     driver.implicitly_wait(30)
-    time.sleep(.1)
+    time.sleep(2)
     smallScrollActions = ActionChains(driver)
-    smallScrollActions.send_keys(Keys.ARROW_DOWN)
+    smallScrollActions.send_keys(Keys.ARROW_DOWN*2)
     smallScrollActions.perform()
     print("We are in New Tab")
 
 
 def groupOpenNewTab():
     driver.implicitly_wait(30)
-    time.sleep(1)
+    time.sleep(2)
     groupOpenActions = ActionChains(driver)
     groupOpenActions.key_down(Keys.CONTROL).send_keys(Keys.ENTER).key_up(Keys.CONTROL)
     groupOpenActions.perform()
     print("We are in New Tab")
+
+
+def bigNextGroup():
+    bigNextLoopStartTime = time.time()
+    for i in range(400):
+        driver.implicitly_wait(30)
+        time.sleep(1.5)
+        bigNextActions = ActionChains(driver)
+        bigNextActions.send_keys(Keys.TAB)
+        bigNextActions.send_keys(Keys.ARROW_DOWN*2)
+        bigNextActions.perform()
+        print("We are in " + str(i) + " no Tab")
+
+    bigNextLoopEndTime = time.time()
+    bigNextLoopTotalRunningTime = bigNextLoopEndTime - bigNextLoopStartTime
+    print("This Script is running for " + str(int(bigNextLoopTotalRunningTime / 60)) + " Minutes.")
 
 
 def switchBrowserTab():
@@ -162,7 +178,8 @@ def switchBrowserTab():
 
 
 def groupLinkCopy():
-    for i in range(22):
+    loopStartTime = time.time()
+    for i in range(50):
         currentWindow = driver.current_window_handle
         print("Current Window : " + currentWindow)
 
@@ -170,24 +187,47 @@ def groupLinkCopy():
         groupOpenNewTab()
         nextGroup()
         switchBrowserTab()
+
+        driver.implicitly_wait(30)
+        time.sleep(4)
+
         driver.switch_to.window(currentWindow)
         smallScroll()
 
-        time.sleep(1)
+        driver.implicitly_wait(30)
+        time.sleep(4)
         print("We are in " + str(i) + " No Group")
         # print(input("Press any Key: "))
+
+    loopEndTime = time.time()
+    loopTotalRunningTime = loopEndTime - loopStartTime
+    print("This Script is running for " + str(int(loopTotalRunningTime / 60)) + " Minutes.")
 
 
 login()
 driver.get("https://www.facebook.com/groups/")
 driver.implicitly_wait(30)
-time.sleep(2)
+time.sleep(4)
 fbGroupArea()
 driver.implicitly_wait(30)
-time.sleep(2)
+time.sleep(4)
 firstGroupLink()
+# print(input("Press any Key: "))
+bigNextGroup()
+print(input("Press any Key: "))
+# groupLinkCopy()
 
-groupLinkCopy()
+duration = 500  # milliseconds
+freq = 440  # Hz
+for i in range(10):
+    driver.implicitly_wait(30)
+    groupLinkCopy()
+    winsound.Beep(freq, duration)
+    # bigScroll()
+    time.sleep(5)
+    print(input(str(i) + "' st 22 Group Link Recorded Press any key to continue: "))
+
+
 
 # Time Counting
 EndTime = time.time()

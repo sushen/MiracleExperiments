@@ -76,7 +76,7 @@ def fbGroupArea():
 
 def firstGroupLink():
     driver.implicitly_wait(30)
-    time.sleep(1)
+    time.sleep(2)
     firstGroupActions = ActionChains(driver)
     total_tab = 9
     for i in range(total_tab):
@@ -89,7 +89,7 @@ def firstGroupLink():
 
 def groupOpenNewTab():
     driver.implicitly_wait(30)
-    time.sleep(1)
+    time.sleep(2)
     groupOpenActions = ActionChains(driver)
     groupOpenActions.send_keys(Keys.ENTER)
     groupOpenActions.perform()
@@ -98,7 +98,7 @@ def groupOpenNewTab():
 
 def nextGroup():
     driver.implicitly_wait(30)
-    time.sleep(.1)
+    time.sleep(2)
     nextGroupActions = ActionChains(driver)
     nextGroupActions.send_keys(Keys.TAB)
     nextGroupActions.send_keys(Keys.ENTER)
@@ -117,7 +117,7 @@ def bigScroll():
 
 def smallScroll():
     driver.implicitly_wait(30)
-    time.sleep(.1)
+    time.sleep(2)
     smallScrollActions = ActionChains(driver)
     smallScrollActions.send_keys(Keys.ARROW_DOWN)
     smallScrollActions.perform()
@@ -125,11 +125,11 @@ def smallScroll():
 
 def navigateSpecificGroup():
     for i in range(1000):
-        spectatedTitle1 = 'DOGELIVE FREE +2% DAILY! | Groups | Facebook'
-        spectatedTitle2 = '(1) DOGELIVE FREE +2% DAILY! | Groups | Facebook'
-        spectatedTitle3 = '(2) DOGELIVE FREE +2% DAILY! | Groups | Facebook'
-        spectatedTitle4 = '(3) DOGELIVE FREE +2% DAILY! | Groups | Facebook'
-        spectatedTitle5 = '(4) DOGELIVE FREE +2% DAILY! | Groups | Facebook'
+        spectatedTitle1 = '(4) নিখিল বঙ্গ গরু খোঁজা সংগঠন | Groups | Facebook'
+        spectatedTitle2 = '(4) নিখিল বঙ্গ গরু খোঁজা সংগঠন | Groups | Facebook'
+        spectatedTitle3 = '(4) নিখিল বঙ্গ গরু খোঁজা সংগঠন | Groups | Facebook'
+        spectatedTitle4 = '(4) নিখিল বঙ্গ গরু খোঁজা সংগঠন | Groups | Facebook'
+        spectatedTitle5 = '(4) নিখিল বঙ্গ গরু খোঁজা সংগঠন | Groups | Facebook'
 
         currentGroupTitle = driver.title
         # print(currentGroupTitle)
@@ -165,6 +165,7 @@ driver.implicitly_wait(30)
 time.sleep(2)
 firstGroupLink()
 bigScroll()
+time.sleep(8)
 
 # Call it when you want to start from some Specific group
 navigateSpecificGroup()
@@ -172,7 +173,7 @@ navigateSpecificGroup()
 
 def groupLinkCopy():
     groupUrl = []
-    for i in range(22):
+    for i in range(10):
         driver.implicitly_wait(30)
         groupOpenNewTab()
         nextGroup()
@@ -196,7 +197,7 @@ def groupLinkCopy():
         with open('file.txt', 'w') as file_handler:
             file_handler.writelines(lines)
 
-        time.sleep(1)
+        time.sleep(4)
         print("We are in " + str(i) + " No Group")
         # print(input("Press any Key: "))
 
@@ -204,9 +205,11 @@ def groupLinkCopy():
 duration = 500  # milliseconds
 freq = 440  # Hz
 for i in range(100):
+    driver.implicitly_wait(30)
     groupLinkCopy()
     winsound.Beep(freq, duration)
     bigScroll()
+    time.sleep(5)
     print(input(str(i) + "' st 22 Group Link Recorded Press any key to continue: "))
 
 # Time Counting
