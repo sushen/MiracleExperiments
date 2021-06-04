@@ -56,10 +56,10 @@ def login():
 
 
 groupPostList = [
+    "https://www.facebook.com/groups/402353916617590/permalink/1644448839074752/",
     "https://www.facebook.com/groups/118355661537061/permalink/4158266657545921/",
     "https://www.facebook.com/groups/mathfordatascience/permalink/1461052630895489/",
     "https://www.facebook.com/groups/135196957162117/permalink/791655444849595/",
-    "https://www.facebook.com/groups/402353916617590/permalink/1644448839074752/",
     "https://www.facebook.com/groups/youngcodersLP/permalink/1498237833901959/",
     "https://www.facebook.com/groups/366190054572553/permalink/508867153638175/",
     "https://www.facebook.com/groups/632595694006151/permalink/858058588126526",
@@ -82,10 +82,11 @@ def navigateCommentWhenNavigateCommentNotFound():
     navigateCommentWhenNavigateCommentNotFoundBtnXpathAria = driver.find_elements_by_xpath(navigateCommentWhenNavigateCommentNotFoundBtnXpath)
     if driver.find_elements_by_xpath(navigateCommentWhenNavigateCommentNotFoundBtnXpath):
         navigateCommentWhenNavigateCommentNotFoundBtnXpathAria[0].click()
+        navigateCommentWhenNavigateCommentNotFoundBtnXpathAria[0].click()
         print(navigateCommentWhenNavigateCommentNotFoundBtnXpathAria[0])
 
         navigateCommentWhenNavigateCommentNotFoundActions = ActionChains(driver)
-        total_tab = 2
+        total_tab = 3
         for i in range(total_tab):
             navigateCommentWhenNavigateCommentNotFoundActions.send_keys(Keys.TAB)
             print(str(i + 1) + " tabs Working for navigateCommentWhenNavigateCommentNotFoundActions Like btn navigation")
