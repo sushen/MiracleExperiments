@@ -4,3 +4,4 @@ with open('file.txt') as f:
         lines.append(line)
     total_group = (len(lines))
     print(total_group)
+

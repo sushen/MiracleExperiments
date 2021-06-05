@@ -129,16 +129,15 @@ def groupOpenNewTab():
 
 def bigNextGroup():
     bigNextLoopStartTime = time.time()
-    for i in range(835):
-            driver.implicitly_wait(30)
-            time.sleep(1)
-            bigNextActions = ActionChains(driver)
-            bigNextActions.send_keys(Keys.TAB)
-            bigNextActions.send_keys(Keys.ARROW_DOWN*2)
-            bigNextActions.perform()
-            print("We are in " + str(i) + " no Tab")
+    for i in range(400):
+        driver.implicitly_wait(30)
+        time.sleep(1.5)
+        bigNextActions = ActionChains(driver)
+        bigNextActions.send_keys(Keys.TAB)
+        bigNextActions.send_keys(Keys.ARROW_DOWN*2)
+        bigNextActions.perform()
+        print("We are in " + str(i) + " no Tab")
 
-    winsound.Beep(440, 1500)
     bigNextLoopEndTime = time.time()
     bigNextLoopTotalRunningTime = bigNextLoopEndTime - bigNextLoopStartTime
     print("This Script is running for " + str(int(bigNextLoopTotalRunningTime / 60)) + " Minutes.")
