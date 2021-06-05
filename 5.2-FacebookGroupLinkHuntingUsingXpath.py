@@ -11,8 +11,6 @@ import pyperclip as pc
 import winsound
 
 # Time Counting
-
-
 StartTime = time.time()
 print("This Script Start " + time.ctime())
 

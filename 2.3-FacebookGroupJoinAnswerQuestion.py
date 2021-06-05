@@ -7,6 +7,10 @@ from selenium.webdriver.common.keys import Keys
 import pathlib
 import random
 
+# Time Counting
+StartTime = time.time()
+print("This Script Start " + time.ctime())
+
 # Setting the chrome_options
 global chrome_options
 chrome_options = Options()
@@ -45,12 +49,13 @@ def login():
         pass
 
 
-def navigateGroupJoinBtn():
-    joinBtnXpath = "//span[contains(text(),'Join Group')]"
-    joinBtnSelector = driver.find_elements_by_xpath(joinBtnXpath)
-    if driver.find_elements_by_xpath(joinBtnXpath):
-        joinBtnSelector[2].click()
-        print(joinBtnSelector[0])
+def answerGroupQuestion():
+    answerGroupQuestionBtnXpath = "//span[contains(text(),'Answer Questions')]"
+    answerGroupQuestionBtnSelector = driver.find_elements_by_xpath(answerGroupQuestionBtnXpath)
+    if driver.find_elements_by_xpath(answerGroupQuestionBtnXpath):
+        answerGroupQuestionBtnSelector[0].click()
+        print(answerGroupQuestionBtnSelector[0])
+        print(input("Press any Key: "))
     else:
         print("Path Not Found")
 
@@ -60,15 +65,29 @@ def joinGroup():
         lines = file.readlines()
         print(lines)
         for groupLists in lines:
+
+            answerStartTime = time.time()
+
             print(groupLists)
             driver.get(groupLists)
             print("We are in " + groupLists + " Group")
-            time.sleep(5)
-            navigateGroupJoinBtn()
-            time.sleep(10)
-            print(input("Press any Key: "))
+            time.sleep(2)
+            answerGroupQuestion()
+            time.sleep(2)
+            # print(input("Press any Key: "))
+
+            answerEndTime = time.time()
+            totalAnswerRunningTime = answerEndTime - answerStartTime
+            print("This Script is running for " + str(int(totalAnswerRunningTime / 60)) + " Minutes.")
 
 
 driver()
 login()
 joinGroup()
+
+# Time Counting
+EndTime = time.time()
+print("This Script End " + time.ctime())
+totalRunningTime = EndTime - StartTime
+print("This Script is running for " + str(int(totalRunningTime)) + " Second. or\n")
+print("This Script is running for " + str(int(totalRunningTime / 60)) + " Minutes.")
