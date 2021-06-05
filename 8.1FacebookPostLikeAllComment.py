@@ -97,7 +97,7 @@ def navigateCommentWhenNavigateCommentNotFound():
         print(input("You Path is not found it will create wrong Navigation fixed it: "))
 
 
-def navigateComment():
+def navigateLike():
     driver.implicitly_wait(20)
     time.sleep(2)
     # Navigate Profile Massage Aria
@@ -115,19 +115,6 @@ def navigateComment():
     print("Like Function Working")
 
 
-
-def navigateLikeAria():
-    driver.implicitly_wait(20)
-    time.sleep(2)
-    navigateLikeAriaActions = ActionChains(driver)
-    total_tab = 1
-    for i in range(total_tab):
-        navigateLikeAriaActions.send_keys(Keys.TAB)
-        print(str(i + 1) + " tabs Working for Like btn navigation")
-    navigateLikeAriaActions.send_keys(Keys.ENTER)
-    navigateLikeAriaActions.perform()
-
-
 driver.implicitly_wait(20)
 time.sleep(5)
 
@@ -137,8 +124,7 @@ for groupPost in groupPostList:
     print(groupPost + " link")
     time.sleep(2)
 
-    navigateComment()
-    navigateLikeAria()
+    navigateLike()
     
     time.sleep(2)
     print(input("Press any Key: "))
