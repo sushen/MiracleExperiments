@@ -74,6 +74,22 @@ groupPostList = [
 ]
 
 
+def navigateReplyAria():
+    relyAction = ActionChains(driver)
+    relyAction.send_keys(Keys.TAB * 2)
+    relyAction.send_keys(Keys.ENTER)
+    relyAction.perform()
+    # print(input("Press any Key: "))
+
+
+def writeComment():
+    CommentAction = ActionChains(driver)
+    CommentAction.send_keys("Thank You for your comment")
+    CommentAction.send_keys(Keys.ENTER)
+    CommentAction.perform()
+    # print(input("Press any Key: "))
+
+
 def navigateLike():
     driver.implicitly_wait(20)
     time.sleep(2)
@@ -84,18 +100,18 @@ def navigateLike():
     likeBtnList = []
     try:
         for likeBtn in likeBtnXpathAria:
-            relyAction = ActionChains(driver)
             likeBtnList.append(likeBtn)
             print(str(len(likeBtnList)) + " Like Btn")
             likeBtnXpathAria[(len(likeBtnList)) * 2].click()
             print(likeBtnXpathAria[(len(likeBtnList)) * 2])
             time.sleep(2)
-            relyAction.send_keys(Keys.TAB*2)
-            relyAction.send_keys(Keys.ENTER)
-            relyAction.send_keys("Thank You for your comment")
-            relyAction.send_keys(Keys.ENTER)
-            relyAction.perform()
+
+            navigateReplyAria()
+            writeComment()
+
             print(input("Press any Key: "))
+
+
 
     except:
         pass
@@ -113,7 +129,7 @@ for groupPost in groupPostList:
     time.sleep(2)
 
     navigateLike()
-    
+
     time.sleep(2)
     print(input("Press any Key: "))
 
