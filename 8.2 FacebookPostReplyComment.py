@@ -26,13 +26,14 @@ chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 chrome_options.add_argument("user-data-dir=chrome-data")
 chrome_options.add_argument(f"user-data-dir={scriptDirectory}\\userdata")
 
-group_post = [
-    "Hello, \nI am very excited about Python and Automation.\nI like to help 2 people learning Python\nand Automation in this week.\nIf you 1 hours time in the evening after 6 p.m\nContact me personally.\nI will be glad to help you personally.",
-    "Hi, \nI am very excited about Automation and Python.\nI like to help 2 people learning Automation \nand Python in this week.\nIf you 1 hours time in the evening after 6 p.m\npersonally contact me.\nI will be glad to help you one to one session.",
-    "Greeting, \nI am very excited about Python and Automation.\nI want to help 2 people learning Python\nand Automation in this week.\nIf you 1 hours time in the evening after 6 p.m\nContact me personally.\nI will be glad to help you personally.",
-    "Hi Python Lover, \nI am very excited about Python and Automation.\nI like to help 2 people learning Python\nand Automation in this week.\nIf you 1 hours time in the evening after 6 p.m\npersonally contact me.\nI will be glad to help you one to one session."
-
+greeting_comment = [
+    "I really appreciate your opinion.",
+    "thank you for your comment",
+    "Nice to see your comment",
+    "thanks, Appreciate your comment"
 ]
+
+
 # Setting the driver
 global driver
 driver = webdriver.Chrome("./chromedriver.exe", chrome_options=chrome_options)
@@ -83,8 +84,9 @@ def navigateReplyAria():
 
 
 def writeComment():
+    random_comment = random.choice(greeting_comment)
     CommentAction = ActionChains(driver)
-    CommentAction.send_keys("Thank You for your comment")
+    CommentAction.send_keys(random_comment)
     CommentAction.send_keys(Keys.ENTER)
     CommentAction.perform()
     # print(input("Press any Key: "))
