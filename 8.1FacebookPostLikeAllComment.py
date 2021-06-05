@@ -101,21 +101,19 @@ def navigateComment():
     driver.implicitly_wait(20)
     time.sleep(2)
     # Navigate Profile Massage Aria
-    CommentBtnXpath = "//span[contains(text(),'comments')]"
-    navigateCommentWhenNavigateCommentNotFoundBtnXpath = "//div[@aria-label='Actions for this post']"
-    CommentBtnXpathAria = driver.find_elements_by_xpath(CommentBtnXpath)
-    if driver.find_elements_by_xpath(CommentBtnXpath):
-        CommentBtnXpathAria[0].click()
-        print(CommentBtnXpathAria[0])
-        print("1st path working")
+    likeBtnXpath = "//span [normalize-space()='Like']"
+    # print(likeBtnXpath)
+    likeBtnXpathAria = driver.find_elements_by_xpath(likeBtnXpath)
+    print(likeBtnXpathAria)
+    for likeBtn in likeBtnXpathAria:
+        print(likeBtn)
+        likeBtn.click()
+        time.sleep(1)
+        # likeBtn.click()
+        # time.sleep(2)
 
-    elif driver.find_elements_by_xpath(navigateCommentWhenNavigateCommentNotFoundBtnXpath):
-        navigateCommentWhenNavigateCommentNotFound()
-        print("2nd path working")
+    print("Like Function Working")
 
-    else:
-        print("Path Not Found ")
-        print(input("You Path is not found it will create wrong Navigation fixed it: "))
 
 
 def navigateLikeAria():
