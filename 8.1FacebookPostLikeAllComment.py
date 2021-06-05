@@ -105,12 +105,23 @@ def navigateLike():
     # print(likeBtnXpath)
     likeBtnXpathAria = driver.find_elements_by_xpath(likeBtnXpath)
     print(likeBtnXpathAria)
-    for likeBtn in likeBtnXpathAria:
-        print(likeBtn)
-        likeBtn.click()
-        time.sleep(1)
-        # likeBtn.click()
-        # time.sleep(2)
+    # for likeBtn in likeBtnXpathAria:
+    #     print(likeBtn)
+    #     likeBtn.click()
+    #     time.sleep(1)
+    #     # likeBtn.click()
+    #     # time.sleep(2)
+    likeBtnList = []
+    try:
+        for likeBtn in likeBtnXpathAria:
+            likeBtnList.append(likeBtn)
+            print(str(len(likeBtnList)) + " Like Btn")
+            likeBtnXpathAria[(len(likeBtnList)) * 2].click()
+            print(likeBtnXpathAria[(len(likeBtnList)) * 2])
+            time.sleep(2)
+
+    except:
+        pass
 
     print("Like Function Working")
 
