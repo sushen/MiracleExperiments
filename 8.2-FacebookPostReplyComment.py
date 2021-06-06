@@ -77,11 +77,14 @@ groupPostList = [
 
 def navigateReplyAria():
     relyAction = ActionChains(driver)
-    relyAction.send_keys(Keys.TAB * 2)
+    # print(input("Press any Key: "))
+    total_tab = 2
+    for i in range(total_tab):
+        driver.implicitly_wait(30)
+        relyAction.send_keys(Keys.TAB)
+        print(str(i + 1) + " tabs Working for saving edited post")
     relyAction.send_keys(Keys.ENTER)
     relyAction.perform()
-    # print(input("Press any Key: "))
-
 
 def writeComment():
     random_comment = random.choice(greeting_comment)
@@ -111,7 +114,7 @@ def navigateLike():
             navigateReplyAria()
             writeComment()
 
-            print(input("Press any Key: "))
+            # print(input("Press any Key: "))
 
 
 
