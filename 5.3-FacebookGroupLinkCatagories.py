@@ -20,7 +20,7 @@ chrome_options = Options()
 scriptDirectory = pathlib.Path().absolute()
 chrome_options.add_argument("--start-maximized")
 chrome_options.add_argument("--user-data-dir=chrome-data")
-chrome_options.add_argument('--profile-directory=Default')
+chrome_options.add_argument('--profile-directory=Profile 8')
 prefs = {"profile.default_content_setting_values.notifications": 2}
 chrome_options.add_experimental_option("prefs", prefs)
 chrome_options.add_argument('disable-infobars')
@@ -38,8 +38,8 @@ driver.get("https://facebook.com")
 def login():
     try:
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
-        username = os.environ.get('my_facebook_username')
-        password = os.environ.get('my_facebook_password')
+        username = os.environ.get('facebook_zrliqi_email')
+        password = os.environ.get('facebook_zrliqi_pass')
         print(username)
         # print(password)
         # print(input("Press any Key: "))
@@ -57,24 +57,24 @@ def login():
 def categoriesGroup():
     with open('categoriesGroup.txt') as file:
         lines = file.readlines()
-        print(lines)
 
         groupLinkList = []
-        print()
         for groupLists in lines:
-            print()
             groupLinkList.append(groupLists)
-            print()
-            currentGroupLink = lines[len(groupLinkList)]
-            print()
-            driver.get(currentGroupLink)
-            print()
-            del currentGroupLink
-            print()
-            total_group = (len(lines))
-            print("Now we have " + str(total_group) + " group in our list")
-
-
+            groupIndex = (len(groupLinkList) - 1)
+            print("Line Number : " + str(groupIndex))
+            print("This line will be deleted :" + lines[groupIndex])
+            del lines[groupIndex]
+            deletedLink = lines[groupIndex]
+            driver.get(deletedLink)
+            line_index = 3
+            deleteLines = None
+            with open('groupCategorized.txt', 'r') as file_handler:
+                deleteLines = file_handler.readlines()
+            deleteLines.insert(line_index, deletedLink)
+            with open('groupCategorized.txt', 'w') as file_handler:
+                file_handler.writelines(deleteLines)
+            print(input("Press any Key: "))
 
 
 login()
