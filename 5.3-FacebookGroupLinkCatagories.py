@@ -41,7 +41,7 @@ def login():
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
         username = os.environ.get('facebook_zrliqi_email')
         password = os.environ.get('facebook_zrliqi_pass')
-        print(username)
+        print("Facebook Username :" + username)
         # print(password)
         # print(input("Press any Key: "))
 
@@ -59,6 +59,7 @@ def findAndRemoveDuplicate():
     with open('categoriesGroup.txt', 'r') as file:
         groupLinks = file.readlines()
         groupLinkSet = set(groupLinks)
+        # This loop Expression detect all duplicate item inside list
         duplicateLinks = [item for item, count in collections.Counter(groupLinks).items() if count > 1]
         duplicateLinkSet = set(duplicateLinks)
         uniqueFile = groupLinkSet - duplicateLinkSet
@@ -66,6 +67,7 @@ def findAndRemoveDuplicate():
             sortedGroupLinks = file.readlines()
             sortedGroupLinksSet = set(sortedGroupLinks)
         with open('categoriesGroup.txt', 'w') as file:
+            # this line delete 2 set String which I store in variable
             sortedUniqueFile = groupLinkSet - sortedGroupLinksSet
             file.writelines(sortedUniqueFile)
         print("We work " + str(len(sortedGroupLinks))
