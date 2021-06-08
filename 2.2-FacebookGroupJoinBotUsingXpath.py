@@ -63,9 +63,9 @@ def joinGroup():
             print(groupLists)
             driver.get(groupLists)
             print("We are in " + groupLists + " Group")
-            time.sleep(2)
+            time.sleep(5)
             navigateGroupJoinBtn()
-            time.sleep(4)
+            time.sleep(10)
             # print(input("Press any Key: "))
 
 

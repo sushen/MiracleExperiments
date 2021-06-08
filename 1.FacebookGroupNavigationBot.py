@@ -116,7 +116,7 @@ groupLists = [
 for groupLinkList in groupLists:
     driver.get(groupLinkList)
     print(groupLinkList + " link")
-    time.sleep(10)
+    time.sleep(30)
 
 
 

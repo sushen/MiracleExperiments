@@ -136,7 +136,7 @@ for groupPost in groupPostList:
     navigateLike()
 
     time.sleep(2)
-    print(input("Press any Key: "))
+    # print(input("Press any Key: "))
 
 # Time Counting
 EndTime = time.time()
