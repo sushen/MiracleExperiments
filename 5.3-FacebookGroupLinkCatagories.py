@@ -9,6 +9,7 @@ import pathlib
 import random
 import pyperclip as pc
 import winsound
+import collections
 
 # Time Counting
 StartTime = time.time()
@@ -40,7 +41,7 @@ def login():
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
         username = os.environ.get('facebook_zrliqi_email')
         password = os.environ.get('facebook_zrliqi_pass')
-        print(username)
+        print("Facebook Username :" + username)
         # print(password)
         # print(input("Press any Key: "))
 
@@ -54,9 +55,31 @@ def login():
         pass
 
 
+def findAndRemoveDuplicate():
+    with open('categoriesGroup.txt', 'r') as file:
+        groupLinks = file.readlines()
+        groupLinkSet = set(groupLinks)
+        # This loop Expression detect all duplicate item inside list
+        duplicateLinks = [item for item, count in collections.Counter(groupLinks).items() if count > 1]
+        duplicateLinkSet = set(duplicateLinks)
+        uniqueFile = groupLinkSet - duplicateLinkSet
+        with open('groupCategorized.txt', 'r') as file:
+            sortedGroupLinks = file.readlines()
+            sortedGroupLinksSet = set(sortedGroupLinks)
+        with open('categoriesGroup.txt', 'w') as file:
+            # this line delete 2 set String which I store in variable
+            sortedUniqueFile = groupLinkSet - sortedGroupLinksSet
+            file.writelines(sortedUniqueFile)
+        print("We work " + str(len(sortedGroupLinks))
+              + " links and \nOur Total group Link is "
+              + str(len(sortedGroupLinks)
+              + (len(groupLinks))))
+
+
 def categoriesGroup():
     with open('categoriesGroup.txt') as file:
         lines = file.readlines()
+        print("We have to work with " + str(len(lines)) + " link")
 
         groupLinkList = []
         for groupLists in lines:
@@ -67,6 +90,8 @@ def categoriesGroup():
             del lines[groupIndex]
             deletedLink = lines[groupIndex]
             driver.get(deletedLink)
+            print(input("Press any Key: "))
+
             line_index = 3
             deleteLines = None
             with open('groupCategorized.txt', 'r') as file_handler:
@@ -74,13 +99,13 @@ def categoriesGroup():
             deleteLines.insert(line_index, deletedLink)
             with open('groupCategorized.txt', 'w') as file_handler:
                 file_handler.writelines(deleteLines)
-            print(input("Press any Key: "))
+
 
 
 login()
+findAndRemoveDuplicate()
 categoriesGroup()
 # print(input("Press any Key: "))
-
 
 
 # Time Counting
