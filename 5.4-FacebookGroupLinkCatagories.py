@@ -76,6 +76,29 @@ def findAndRemoveDuplicate():
                     + (len(groupLinks))))
 
 
+def copyCurrentUrl():
+    pc.copy(driver.current_url)
+    groupUrl = pc.paste()
+    print("This line will be deleted :" + groupUrl)
+
+
+def switchWindow():
+    currentWindow = driver.current_window_handle
+    print("Current Group Window :" + currentWindow)
+    window_before = driver.window_handles[0]
+    print("This is index of Current Window :" + window_before)
+
+    driver.execute_script("window.open('');")
+    window_after = driver.window_handles[1]
+    print("New Window Index :" + window_after)
+    driver.switch_to.window(window_after)
+    driver.get("https://docs.google.com/spreadsheets/d/1V9jCslR-OpBoa5l8xDs2VkCASx8FdrJqLWOUPHmWcY8/")
+    driver.switch_to.window(window_before)
+    time.sleep(5)
+    driver.switch_to.window(window_after)
+    driver.close()
+    driver.switch_to.window(window_before)
+
 def categoriesGroup():
     with open('categoriesGroup.txt') as file:
         lines = file.readlines()
@@ -86,10 +109,11 @@ def categoriesGroup():
             groupLinkList.append(groupLists)
             groupIndex = (len(groupLinkList) - 1)
             print("Line Number : " + str(groupIndex))
-            print("This line will be deleted :" + lines[groupIndex])
-            del lines[groupIndex]
+
             deletedLink = lines[groupIndex]
             driver.get(deletedLink)
+
+            copyCurrentUrl()
             print(input("Press any Key: "))
 
             line_index = 3
