@@ -127,7 +127,7 @@ def groupOpenNewTab():
 
 def bigNextGroup():
     bigNextLoopStartTime = time.time()
-    for i in range(400):
+    for i in range(1):
         driver.implicitly_wait(30)
         time.sleep(1.5)
         bigNextActions = ActionChains(driver)
