@@ -32,12 +32,12 @@ def driver():
 def login():
     try:
         # I use environment veriable  base on this tutorials https://www.youtube.com/watch?v=IolxqkL7cD8
-        # username = os.environ.get('facebook_zrliqi_email')
-        # password = os.environ.get('facebook_zrliqi_pass')
+        username = os.environ.get('facebook_zrliqi_email')
+        password = os.environ.get('facebook_zrliqi_pass')
 
-        # driver.find_element_by_name("email").send_keys(username)
-        # driver.find_element_by_name("pass").send_keys(password)
-        # driver.find_element_by_name("login").click()
+        driver.find_element_by_name("email").send_keys(username)
+        driver.find_element_by_name("pass").send_keys(password)
+        driver.find_element_by_name("login").click()
         print(input("Press any Key: "))
         print("Login work Successfully ")
 
@@ -116,7 +116,7 @@ groupLists = [
 for groupLinkList in groupLists:
     driver.get(groupLinkList)
     print(groupLinkList + " link")
-    time.sleep(30)
+    time.sleep(5)
 
 
 
